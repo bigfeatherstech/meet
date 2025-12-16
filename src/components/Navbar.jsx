@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FiSearch, FiUser, FiShoppingCart, FiChevronDown, FiMenu, FiX } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -244,11 +245,42 @@ const Navbar = () => {
               ))}
             </div>
 
-            <div className="flex items-center space-x-6">
-              <a href="#" className="text-red-600 font-semibold hover:text-red-700">Deals</a>
-              <a href="#" className="text-samsung-blue font-semibold hover:text-samsung-blue-light">New Arrivals</a>
-              <a href="#" className="text-green-600 font-semibold hover:text-green-700">Sustainability</a>
-            </div>
+            {/* <div className="flex items-center space-x-6">
+              <a href="#" className="text-red-600 font-semibold hover:text-red-700">About</a>
+              <a href="#" className="text-samsung-blue font-semibold hover:text-samsung-blue-light">Products</a>
+              <a href="#" className="text-green-600 font-semibold hover:text-green-700">Career</a>
+              <a href="#" className="text-green-600 font-semibold hover:text-green-700">Contact us </a>
+
+            </div> */}
+<div className="flex items-center space-x-6">
+  <Link 
+    to="/about" 
+    className="text-gray-800 font-medium hover:text-samsung-blue transition-colors"
+  >
+    About
+  </Link>
+  <Link 
+    to="/products" 
+    className="text-gray-800 font-medium hover:text-samsung-blue transition-colors"
+  >
+    Products
+  </Link>
+  <Link 
+    to="/career" 
+    className="text-gray-800 font-medium hover:text-samsung-blue transition-colors"
+  >
+    Career
+  </Link>
+  <Link 
+    to="/contact" 
+    className="text-gray-800 font-medium hover:text-samsung-blue transition-colors"
+  >
+    Contact Us
+  </Link>
+</div>
+
+
+
           </div>
         </div>
 
