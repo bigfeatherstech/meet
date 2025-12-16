@@ -181,13 +181,7 @@ const Navbar = () => {
                 <FiUser size={20} />
                 <span className="text-sm">Account</span>
               </button>
-              
-              <button className="relative p-2">
-                <FiShoppingCart size={20} />
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  3
-                </span>
-              </button>
+
             </div>
           </div>
 
@@ -245,9 +239,10 @@ const Navbar = () => {
             </div>
 
             <div className="flex items-center space-x-6">
-              <a href="#" className="text-red-600 font-semibold hover:text-red-700">Deals</a>
-              <a href="#" className="text-samsung-blue font-semibold hover:text-samsung-blue-light">New Arrivals</a>
-              <a href="#" className="text-green-600 font-semibold hover:text-green-700">Sustainability</a>
+              <a href="#" className="text-red-600 font-semibold hover:text-red-700">About</a>
+              <a href="#" className="text-red-600 font-semibold hover:text-red-700">Products</a>
+              <a href="#" className="text-samsung-blue font-semibold hover:text-samsung-blue-light">Carrer</a>
+              <a href="#" className="text-green-600 font-semibold hover:text-green-700">Contact</a>
             </div>
           </div>
         </div>
