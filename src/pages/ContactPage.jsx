@@ -19,14 +19,17 @@ import {
   FiShield,
   FiHeadphones,
   FiBriefcase,
-  FiFlag
+  FiFlag,
+  FiTarget,
+  FiHeart,
+  FiTrendingUp,
+  FiStar,
+  FiUsers,
+  FiAward
 } from 'react-icons/fi';
 
-// Import phone input and its styles
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
-
-// Import country list for the dropdown
 import countryList from 'react-select-country-list';
 import Select from 'react-select';
 
@@ -43,8 +46,46 @@ const ContactPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [activeTab, setActiveTab] = useState('general');
+  const [visibleSections, setVisibleSections] = useState({
+    hero: false,
+    contact: false,
+    form: false,
+    info: false
+  });
 
-  // Country options for the dropdown
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = {
+        hero: document.getElementById('contact-hero'),
+        contact: document.getElementById('contact-cards'),
+        form: document.getElementById('contact-form-section'),
+        info: document.getElementById('contact-info')
+      };
+
+      const newVisibility = { ...visibleSections };
+      
+      Object.keys(sections).forEach(key => {
+        const section = sections[key];
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          const isVisible = rect.top < window.innerHeight * 0.8;
+          if (isVisible && !newVisibility[key]) {
+            newVisibility[key] = true;
+          }
+        }
+      });
+
+      setVisibleSections(newVisibility);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [visibleSections]);
+
   const countryOptions = useMemo(() => countryList().getData(), []);
 
   const handleChange = (e) => {
@@ -55,7 +96,6 @@ const ContactPage = () => {
     }));
   };
 
-  // Handle phone input change
   const handlePhoneChange = (phoneValue) => {
     setFormData(prev => ({
       ...prev,
@@ -63,7 +103,6 @@ const ContactPage = () => {
     }));
   };
 
-  // Handle country selection change
   const handleCountryChange = (selectedOption) => {
     const countryCode = selectedOption ? selectedOption.value : '';
     setFormData(prev => ({
@@ -76,13 +115,11 @@ const ContactPage = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
     
     setIsSubmitting(false);
     setIsSubmitted(true);
     
-    // Reset form after 3 seconds
     setTimeout(() => {
       setIsSubmitted(false);
       setFormData({
@@ -103,15 +140,15 @@ const ContactPage = () => {
       title: "Phone Support",
       details: ["+1 (888) 123-4567", "+1 (888) 987-6543"],
       description: "Available 24/7 for urgent inquiries",
-      color: "bg-blue-500",
+      color: "from-blue-500 to-cyan-400",
       gradient: "from-blue-500 to-cyan-400"
     },
     {
       icon: <FiMail />,
       title: "Email Support",
-      details: ["support@electrostore.com", "sales@electrostore.com"],
+      details: ["support@meetelectronics.com", "sales@meetelectronics.com"],
       description: "Response within 2 hours during business days",
-      color: "bg-green-500",
+      color: "from-green-500 to-emerald-400",
       gradient: "from-green-500 to-emerald-400"
     },
     {
@@ -119,7 +156,7 @@ const ContactPage = () => {
       title: "Visit Our Store",
       details: ["123 Tech Street, San Francisco, CA 94107", "View on Google Maps"],
       description: "Open Monday to Saturday, 9AM - 9PM",
-      color: "bg-purple-500",
+      color: "from-purple-500 to-pink-400",
       gradient: "from-purple-500 to-pink-400"
     },
     {
@@ -127,7 +164,7 @@ const ContactPage = () => {
       title: "Live Chat",
       details: ["Available on website", "Click the chat icon in bottom-right"],
       description: "Instant response from our support team",
-      color: "bg-orange-500",
+      color: "from-orange-500 to-amber-400",
       gradient: "from-orange-500 to-amber-400"
     }
   ];
@@ -157,7 +194,7 @@ const ContactPage = () => {
       questions: [
         {
           q: "How do I set up my new device?",
-          a: "Visit our setup guides section or download the ElectroStore app for step-by-step instructions with video tutorials."
+          a: "Visit our setup guides section or download the Meet Electronics app for step-by-step instructions with video tutorials."
         },
         {
           q: "What if my product isn't working properly?",
@@ -189,93 +226,121 @@ const ContactPage = () => {
     }
   ];
 
-  // Get active FAQ category
   const activeCategory = faqCategories.find(cat => cat.id === activeTab);
-
-  // Find selected country object for display
   const selectedCountry = formData.country 
     ? countryOptions.find(option => option.value === formData.country)
     : null;
 
+  const achievements = [
+    { 
+      number: "24/7", 
+      label: "Support", 
+      icon: <FiShield />,
+      suffix: "",
+      color: "text-blue-600"
+    },
+    { 
+      number: "< 2h", 
+      label: "Response Time", 
+      icon: <FiClock />,
+      suffix: "",
+      color: "text-green-600"
+    },
+    { 
+      number: "98%", 
+      label: "Satisfaction", 
+      icon: <FiHeart />,
+      suffix: "",
+      color: "text-purple-600"
+    },
+    { 
+      number: "50+", 
+      label: "Countries Served", 
+      icon: <FiGlobe />,
+      suffix: "",
+      color: "text-orange-600"
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-samsung-blue to-blue-600 pt-24 pb-20">
-        <div className="absolute inset-0">
-          <div 
-            className="absolute inset-0 opacity-20"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-            }}
-          ></div>
-        </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+    <div className="min-h-screen bg-white">
+      {/* Hero Banner - EXACT SAME AS ABOUT PAGE */}
+      <section 
+        id="contact-hero" 
+        className={`relative bg-gradient-to-r from-samsung-blue to-blue-800 text-white py-20 md:py-32 overflow-hidden transition-all duration-1000 ${
+          visibleSections.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="samsung-container relative z-10">
+          <div className="max-w-3xl">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight animate-fade-in-up">
               Get in <span className="text-cyan-300">Touch</span>
             </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
-              We're here to help! Whether you have questions about products, need technical support, or want to partner with us.
+            <p className="text-xl md:text-2xl text-blue-100 mb-8 animate-fade-in-up animate-delay-200">
+              Where innovation meets exceptional customer support. We're here to help transform your technology experience.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white">
-                <FiClock className="animate-spin" />
-                <span>24/7 Support Available</span>
-              </div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white">
-                <FiShield />
-                <span>100% Secure Communication</span>
-              </div>
-            </div>
+            <button className="bg-white text-samsung-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg animate-fade-in-up animate-delay-400 flex items-center gap-2 group">
+              Get Instant Help
+              <FiArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
           </div>
         </div>
+        
+        {/* Floating Elements - Same as About Page */}
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-white/10 rounded-full animate-float" />
+        <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-white/10 rounded-full animate-float animate-delay-1000" />
+        <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-white/5 rounded-full animate-float animate-delay-2000" />
       </section>
 
-      {/* Contact Cards */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {contactInfo.map((info, index) => (
-              <div 
-                key={index}
-                className="group relative overflow-hidden rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-              >
-                <div className={`absolute top-0 left-0 w-full h-2 bg-gradient-to-r ${info.gradient}`}></div>
-                <div className="p-6">
-                  <div className={`inline-flex p-3 rounded-xl ${info.color} text-white mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                    {info.icon}
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{info.title}</h3>
-                  <p className="text-gray-600 text-sm mb-4">{info.description}</p>
-                  <div className="space-y-2">
-                    {info.details.map((detail, i) => (
-                      <div key={i} className="flex items-center gap-2 text-gray-700 hover:text-samsung-blue transition-colors cursor-pointer group/detail">
-                        <span>{detail}</span>
-                        <FiChevronRight className="opacity-0 group-hover/detail:opacity-100 transition-all duration-300" />
-                      </div>
-                    ))}
-                  </div>
-                </div>
+      {/* Achievements Bar - Matching About Page Style */}
+      <div className="relative -mt-12 samsung-container">
+        <div 
+          id="contact-cards"
+          className={`bg-white rounded-2xl shadow-2xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 transition-all duration-1000 transform ${
+            visibleSections.contact ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          {achievements.map((achievement, index) => (
+            <div 
+              key={index}
+              className="text-center group"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-samsung-blue/10 text-samsung-blue rounded-2xl mb-4 group-hover:scale-110 transition-all duration-300 animate-bounce-in">
+                <span className="text-2xl">{achievement.icon}</span>
               </div>
-            ))}
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <div className="bg-white rounded-2xl shadow-xl p-8">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="p-2 bg-samsung-blue/10 rounded-lg">
-                  <FiMessageSquare className="text-samsung-blue text-2xl" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold text-gray-900">Send us a Message</h2>
-                  <p className="text-gray-600">We'll get back to you within 2 hours</p>
-                </div>
+              <div className={`text-3xl font-bold ${achievement.color} mb-2 animate-count-up`}>
+                {achievement.number}{achievement.suffix}
               </div>
+              <div className="text-gray-600">{achievement.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
 
+      {/* Contact Form & Info Section */}
+      <section 
+        id="contact-form-section" 
+        className="py-20 samsung-container overflow-hidden"
+      >
+        <div className={`grid lg:grid-cols-2 gap-16 transition-all duration-1000 ${
+          visibleSections.form ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+        }`}>
+          
+          {/* Left: Contact Form */}
+          <div>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6 animate-slide-in-left">
+              Send Us a Message
+            </h2>
+            <p className="text-gray-600 mb-8 text-lg animate-slide-in-left animate-delay-100">
+              Have questions or need assistance? Our team is ready to help you with any inquiries.
+            </p>
+
+            <div className="bg-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 group">
               {isSubmitted ? (
-                <div className="text-center py-12">
-                  <div className="inline-flex p-4 bg-green-100 rounded-full mb-4">
+                <div className="text-center py-8">
+                  <div className="inline-flex p-4 bg-green-100 rounded-full mb-4 animate-bounce-in">
                     <FiCheckCircle className="text-green-600 text-4xl" />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent Successfully!</h3>
@@ -285,11 +350,9 @@ const ContactPage = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="group">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        <div className="flex items-center gap-2">
-                          <FiUser className="text-gray-400 group-focus-within:text-samsung-blue transition-colors duration-300" />
-                          Your Name *
-                        </div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                        <FiUser className="text-gray-400 group-focus-within:text-samsung-blue transition-colors" />
+                        Your Name *
                       </label>
                       <input
                         type="text"
@@ -303,11 +366,9 @@ const ContactPage = () => {
                     </div>
 
                     <div className="group">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        <div className="flex items-center gap-2">
-                          <FiMail className="text-gray-400 group-focus-within:text-samsung-blue transition-colors duration-300" />
-                          Email Address *
-                        </div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                        <FiMail className="text-gray-400 group-focus-within:text-samsung-blue transition-colors" />
+                        Email Address *
                       </label>
                       <input
                         type="email"
@@ -322,13 +383,10 @@ const ContactPage = () => {
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">
-                    {/* Country Field */}
                     <div className="group">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        <div className="flex items-center gap-2">
-                          <FiFlag className="text-gray-400 group-focus-within:text-samsung-blue transition-colors duration-300" />
-                          Country *
-                        </div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                        <FiFlag className="text-gray-400 group-focus-within:text-samsung-blue transition-colors" />
+                        Country *
                       </label>
                       <Select
                         options={countryOptions}
@@ -364,13 +422,10 @@ const ContactPage = () => {
                       />
                     </div>
 
-                    {/* Company Field */}
                     <div className="group">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        <div className="flex items-center gap-2">
-                          <FiBriefcase className="text-gray-400 group-focus-within:text-samsung-blue transition-colors duration-300" />
-                          Company (Optional)
-                        </div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                        <FiBriefcase className="text-gray-400 group-focus-within:text-samsung-blue transition-colors" />
+                        Company (Optional)
                       </label>
                       <input
                         type="text"
@@ -383,31 +438,22 @@ const ContactPage = () => {
                     </div>
                   </div>
 
-                  {/* Phone Field with Country Flag */}
                   <div className="group">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      <div className="flex items-center gap-2">
-                        <FiPhone className="text-gray-400 group-focus-within:text-samsung-blue transition-colors duration-300" />
-                        Phone Number (Optional)
-                      </div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                      <FiPhone className="text-gray-400 group-focus-within:text-samsung-blue transition-colors" />
+                      Phone Number (Optional)
                     </label>
-                    <div className="PhoneInput">
-                      <PhoneInput
-                        international
-                        countryCallingCodeEditable={false}
-                        defaultCountry={formData.country || "US"}
-                        value={formData.phone}
-                        onChange={handlePhoneChange}
-                        placeholder="Enter phone number"
-                        className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-samsung-blue focus:ring-2 focus:ring-samsung-blue/20 outline-none transition-all duration-300"
-                      />
-                    </div>
-                    <p className="text-xs text-gray-500 mt-2">
-                      Country code will update based on your country selection
-                    </p>
+                    <PhoneInput
+                      international
+                      countryCallingCodeEditable={false}
+                      defaultCountry={formData.country || "US"}
+                      value={formData.phone}
+                      onChange={handlePhoneChange}
+                      placeholder="Enter phone number"
+                      className="PhoneInput px-4 py-3 rounded-xl border border-gray-300 focus:border-samsung-blue focus:ring-2 focus:ring-samsung-blue/20 outline-none transition-all duration-300"
+                    />
                   </div>
 
-                  {/* Subject Field - Changed to text input */}
                   <div className="group">
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Subject *
@@ -441,7 +487,7 @@ const ContactPage = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-samsung-blue to-blue-600 text-white py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 group"
+                    className="w-full bg-gradient-to-r from-samsung-blue to-blue-600 text-white py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 group/btn"
                   >
                     {isSubmitting ? (
                       <>
@@ -451,222 +497,360 @@ const ContactPage = () => {
                     ) : (
                       <>
                         Send Message
-                        <FiSend className="group-hover:translate-x-1 transition-transform duration-300" />
+                        <FiSend className="group-hover/btn:translate-x-1 transition-transform duration-300" />
                       </>
                     )}
                   </button>
                 </form>
               )}
             </div>
+          </div>
 
-            {/* FAQ Section */}
-            <div className="space-y-8">
-              <div className="bg-gradient-to-r from-samsung-blue to-blue-600 rounded-2xl p-8 text-white">
-                <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {faqCategories.map(category => (
-                    <button
-                      key={category.id}
-                      onClick={() => setActiveTab(category.id)}
-                      className={`px-4 py-2 rounded-lg transition-all duration-300 ${
-                        activeTab === category.id
-                          ? 'bg-white text-samsung-blue'
-                          : 'bg-white/20 hover:bg-white/30'
-                      }`}
-                    >
-                      {category.title}
-                    </button>
-                  ))}
-                </div>
-                
-                <div className="space-y-4">
-                  {activeCategory?.questions.map((faq, index) => (
-                    <div 
-                      key={index}
-                      className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-all duration-300 group cursor-pointer"
-                    >
-                      <div className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-cyan-300 rounded-full mt-2"></div>
-                        <div>
-                          <h4 className="font-semibold mb-2 group-hover:text-cyan-200 transition-colors duration-300">
-                            {faq.q}
-                          </h4>
-                          <div className="overflow-hidden">
-                            <p className="text-blue-100 text-sm">
-                              {faq.a}
-                            </p>
-                          </div>
+          {/* Right: Contact Information */}
+          <div className="space-y-8">
+            <div className="bg-gradient-to-r from-samsung-blue to-blue-600 rounded-3xl p-8 text-white animate-pulse-gentle">
+              <h2 className="text-3xl font-bold mb-6">Quick Contact Channels</h2>
+              <div className="space-y-6">
+                {contactInfo.map((info, index) => (
+                  <div 
+                    key={index}
+                    className="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300 group cursor-pointer"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className={`p-3 rounded-xl bg-gradient-to-r ${info.color} text-white group-hover:scale-110 transition-transform duration-300`}>
+                        {info.icon}
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-bold mb-2">{info.title}</h3>
+                        <p className="text-blue-100 text-sm mb-3">{info.description}</p>
+                        <div className="space-y-1">
+                          {info.details.map((detail, i) => (
+                            <div key={i} className="flex items-center gap-2 text-blue-50 group-hover:text-cyan-200 transition-colors">
+                              <span>{detail}</span>
+                              <FiChevronRight className="opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </div>
-                  ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* FAQ Section */}
+            <div className="bg-white rounded-2xl shadow-xl p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2 bg-samsung-blue/10 rounded-lg">
+                  <FiMessageSquare className="text-samsung-blue text-2xl" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">Frequently Asked Questions</h2>
+                  <p className="text-gray-600">Quick answers to common questions</p>
                 </div>
               </div>
 
-              {/* Social & Location */}
-              <div className="bg-white rounded-2xl shadow-xl p-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-6">Connect With Us</h3>
-                <div className="flex items-center gap-4 mb-8">
-                  {[
-                    { icon: <FiFacebook />, label: 'Facebook', color: 'text-blue-600' },
-                    { icon: <FiTwitter />, label: 'Twitter', color: 'text-sky-500' },
-                    { icon: <FiInstagram />, label: 'Instagram', color: 'text-pink-500' },
-                    { icon: <FiLinkedin />, label: 'LinkedIn', color: 'text-blue-700' },
-                    { icon: <FiYoutube />, label: 'YouTube', color: 'text-red-600' }
-                  ].map((social, index) => (
-                    <button
-                      key={index}
-                      className={`p-3 rounded-xl bg-gray-50 hover:shadow-md transition-all duration-300 hover:-translate-y-1 ${social.color}`}
-                      aria-label={social.label}
-                    >
-                      {social.icon}
-                    </button>
-                  ))}
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <FiGlobe className="text-samsung-blue text-xl mt-1" />
-                    <div>
-                      <h4 className="font-semibold text-gray-900">Global Headquarters</h4>
-                      <p className="text-gray-600">123 Tech Street, San Francisco, CA 94107</p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {faqCategories.map(category => (
+                  <button
+                    key={category.id}
+                    onClick={() => setActiveTab(category.id)}
+                    className={`px-4 py-2 rounded-lg transition-all duration-300 ${
+                      activeTab === category.id
+                        ? 'bg-samsung-blue text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {category.title}
+                  </button>
+                ))}
+              </div>
+              
+              <div className="space-y-4">
+                {activeCategory?.questions.map((faq, index) => (
+                  <div 
+                    key={index}
+                    className="border border-gray-200 rounded-xl p-4 hover:border-samsung-blue hover:bg-blue-50 transition-all duration-300 group cursor-pointer"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-samsung-blue rounded-full mt-2 group-hover:scale-150 transition-transform duration-300"></div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2 group-hover:text-samsung-blue transition-colors duration-300">
+                          {faq.q}
+                        </h4>
+                        <div className="overflow-hidden">
+                          <p className="text-gray-600 text-sm">
+                            {faq.a}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <FiClock className="text-samsung-blue text-xl mt-1" />
-                    <div>
-                      <h4 className="font-semibold text-gray-900">Business Hours</h4>
-                      <p className="text-gray-600">Mon-Fri: 8AM-8PM EST | Sat: 9AM-5PM EST</p>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Map & Info Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Additional Info Section */}
+      <section 
+        id="contact-info" 
+        className="py-20 bg-samsung-gray overflow-hidden"
+      >
+        <div className="samsung-container">
+          <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${
+            visibleSections.info ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">Global Reach, Local Support</h2>
+            <p className="text-xl text-gray-600">
+              Our support network spans across continents, ensuring you get help whenever and wherever you need it.
+            </p>
+          </div>
+
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Map Placeholder */}
-            <div className="lg:col-span-2">
-              <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                <div className="h-96 bg-gradient-to-br from-gray-200 to-gray-300 relative">
-                  {/* Map Simulation */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <FiMapPin className="text-samsung-blue text-6xl mb-4 mx-auto" />
-                      <p className="text-gray-700 font-semibold">Interactive Map Here</p>
-                      <p className="text-gray-600 text-sm">(Google Maps integration available)</p>
+            {/* Social Media */}
+            <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 p-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                <FiGlobe className="text-samsung-blue" />
+                Connect With Us
+              </h3>
+              <div className="flex flex-wrap gap-3 mb-6">
+                {[
+                  { icon: <FiFacebook />, label: 'Facebook', color: 'hover:bg-blue-100 hover:text-blue-600' },
+                  { icon: <FiTwitter />, label: 'Twitter', color: 'hover:bg-sky-100 hover:text-sky-500' },
+                  { icon: <FiInstagram />, label: 'Instagram', color: 'hover:bg-pink-100 hover:text-pink-500' },
+                  { icon: <FiLinkedin />, label: 'LinkedIn', color: 'hover:bg-blue-100 hover:text-blue-700' },
+                  { icon: <FiYoutube />, label: 'YouTube', color: 'hover:bg-red-100 hover:text-red-600' }
+                ].map((social, index) => (
+                  <button
+                    key={index}
+                    className={`p-3 rounded-xl bg-gray-50 hover:shadow-md transition-all duration-300 hover:-translate-y-1 ${social.color}`}
+                    aria-label={social.label}
+                  >
+                    {social.icon}
+                  </button>
+                ))}
+              </div>
+              <p className="text-gray-600">Follow us for updates, tech tips, and exclusive offers.</p>
+            </div>
+
+            {/* Newsletter */}
+            <div className="bg-gradient-to-r from-samsung-blue to-blue-600 rounded-2xl p-8 text-white">
+              <h3 className="text-2xl font-bold mb-4">Stay Updated</h3>
+              <p className="text-blue-100 mb-6">Subscribe to our newsletter for exclusive deals and tech news</p>
+              <div className="space-y-3">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white placeholder-blue-200 focus:outline-none focus:border-white transition-all duration-300"
+                />
+                <button className="w-full bg-white text-samsung-blue py-3 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 flex items-center justify-center gap-2 group">
+                  Subscribe Now
+                  <FiArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
+                </button>
+              </div>
+            </div>
+
+            {/* Quick Actions */}
+            <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 p-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Quick Actions</h3>
+              <div className="space-y-4">
+                <button className="w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 hover:border-samsung-blue hover:bg-blue-50 transition-all duration-300 group">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-blue-100 rounded-lg">
+                      <FiHeadphones className="text-samsung-blue" />
+                    </div>
+                    <div className="text-left">
+                      <div className="font-semibold text-gray-900">Live Chat Now</div>
+                      <div className="text-sm text-gray-600">Instant support available</div>
                     </div>
                   </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Visit Our Flagship Store</h3>
-                  <p className="text-gray-600 mb-4">Experience our products firsthand with expert guidance</p>
-                  <button className="inline-flex items-center gap-2 px-6 py-3 bg-samsung-blue text-white rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300 group">
-                    Get Directions
-                    <FiArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
-                  </button>
-                </div>
-              </div>
-            </div>
+                  <FiArrowRight className="text-gray-400 group-hover:text-samsung-blue group-hover:translate-x-1 transition-all duration-300" />
+                </button>
 
-            {/* Quick Contact */}
-            <div className="space-y-6">
-              <div className="bg-white rounded-2xl shadow-xl p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Quick Contact</h3>
-                <div className="space-y-4">
-                  <button className="w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 hover:border-samsung-blue hover:bg-blue-50 transition-all duration-300 group">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-blue-100 rounded-lg">
-                        <FiPhone className="text-samsung-blue" />
-                      </div>
-                      <div className="text-left">
-                        <div className="font-semibold text-gray-900">Call Now</div>
-                        <div className="text-sm text-gray-600">+1 (888) 123-4567</div>
-                      </div>
+                <button className="w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 hover:border-samsung-blue hover:bg-blue-50 transition-all duration-300 group">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-green-100 rounded-lg">
+                      <FiMail className="text-green-600" />
                     </div>
-                    <FiArrowRight className="text-gray-400 group-hover:text-samsung-blue group-hover:translate-x-1 transition-all duration-300" />
-                  </button>
-
-                  <button className="w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 hover:border-samsung-blue hover:bg-blue-50 transition-all duration-300 group">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-green-100 rounded-lg">
-                        <FiMail className="text-green-600" />
-                      </div>
-                      <div className="text-left">
-                        <div className="font-semibold text-gray-900">Email Us</div>
-                        <div className="text-sm text-gray-600">support@electrostore.com</div>
-                      </div>
+                    <div className="text-left">
+                      <div className="font-semibold text-gray-900">Email Support</div>
+                      <div className="text-sm text-gray-600">support@meetelectronics.com</div>
                     </div>
-                    <FiArrowRight className="text-gray-400 group-hover:text-samsung-blue group-hover:translate-x-1 transition-all duration-300" />
-                  </button>
+                  </div>
+                  <FiArrowRight className="text-gray-400 group-hover:text-samsung-blue group-hover:translate-x-1 transition-all duration-300" />
+                </button>
 
-                  <button className="w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 hover:border-samsung-blue hover:bg-blue-50 transition-all duration-300 group">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-purple-100 rounded-lg">
-                        <FiHeadphones className="text-purple-600" />
-                      </div>
-                      <div className="text-left">
-                        <div className="font-semibold text-gray-900">Live Chat</div>
-                        <div className="text-sm text-gray-600">Available 24/7</div>
-                      </div>
+                <button className="w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 hover:border-samsung-blue hover:bg-blue-50 transition-all duration-300 group">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-purple-100 rounded-lg">
+                      <FiMapPin className="text-purple-600" />
                     </div>
-                    <FiArrowRight className="text-gray-400 group-hover:text-samsung-blue group-hover:translate-x-1 transition-all duration-300" />
-                  </button>
-                </div>
-              </div>
-
-              {/* Newsletter */}
-              <div className="bg-gradient-to-br from-samsung-blue to-blue-600 rounded-2xl p-6 text-white">
-                <h3 className="text-xl font-bold mb-3">Stay Updated</h3>
-                <p className="text-blue-100 mb-4">Subscribe to our newsletter for exclusive deals and tech news</p>
-                <div className="space-y-3">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="w-full px-4 py-3 rounded-xl border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white placeholder-blue-200 focus:outline-none focus:border-white transition-all duration-300"
-                  />
-                  <button className="w-full bg-white text-samsung-blue py-3 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300">
-                    Subscribe Now
-                  </button>
-                </div>
+                    <div className="text-left">
+                      <div className="font-semibold text-gray-900">Store Locator</div>
+                      <div className="text-sm text-gray-600">Find nearest location</div>
+                    </div>
+                  </div>
+                  <FiArrowRight className="text-gray-400 group-hover:text-samsung-blue group-hover:translate-x-1 transition-all duration-300" />
+                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose ElectroStore Support?</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">We're committed to providing the best customer experience in the electronics industry</p>
-          </div>
-          
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              { value: "24/7", label: "Support Availability", icon: "🕒" },
-              { value: "< 2h", label: "Avg. Response Time", icon: "⚡" },
-              { value: "98%", label: "Satisfaction Rate", icon: "⭐" },
-              { value: "50+", label: "Countries Served", icon: "🌍" }
-            ].map((stat, index) => (
-              <div 
-                key={index}
-                className="text-center p-6 rounded-2xl bg-gradient-to-b from-gray-50 to-white shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
-              >
-                <div className="text-4xl mb-4">{stat.icon}</div>
-                <div className="text-4xl font-bold text-samsung-blue mb-2">{stat.value}</div>
-                <div className="text-gray-700 font-medium">{stat.label}</div>
-              </div>
-            ))}
+      {/* Call to Action - Matching About Page */}
+      <section className="py-20 samsung-container">
+        <div className="bg-gradient-to-r from-samsung-blue to-blue-600 rounded-3xl p-12 text-center animate-pulse-gentle">
+          <h2 className="text-4xl font-bold text-white mb-6">
+            Ready to Experience Excellence?
+          </h2>
+          <p className="text-blue-100 text-xl mb-8 max-w-2xl mx-auto">
+            Our team is dedicated to providing you with the best support experience in the electronics industry.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-white text-samsung-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 animate-bounce-slow">
+              Start Live Chat
+            </button>
+            <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+              Call Now: +1 (888) 123-4567
+            </button>
           </div>
         </div>
       </section>
+
+      {/* Animation Styles - Same as About Page */}
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-20px) rotate(180deg);
+          }
+        }
+        
+        @keyframes bounceIn {
+          0% {
+            opacity: 0;
+            transform: scale(0.3);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.05);
+          }
+          70% {
+            transform: scale(0.9);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+        
+        @keyframes countUp {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes pulseGentle {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.95;
+          }
+        }
+        
+        @keyframes bounceSlow {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+        
+        .animate-fade-in-up {
+          animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-slide-in-left {
+          animation: slideInLeft 0.8s ease-out forwards;
+        }
+        
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-bounce-in {
+          animation: bounceIn 0.6s ease-out forwards;
+        }
+        
+        .animate-count-up {
+          animation: countUp 0.5s ease-out forwards;
+        }
+        
+        .animate-pulse-gentle {
+          animation: pulseGentle 2s ease-in-out infinite;
+        }
+        
+        .animate-bounce-slow {
+          animation: bounceSlow 2s ease-in-out infinite;
+        }
+        
+        .animate-delay-100 {
+          animation-delay: 100ms;
+        }
+        
+        .animate-delay-200 {
+          animation-delay: 200ms;
+        }
+        
+        .animate-delay-300 {
+          animation-delay: 300ms;
+        }
+        
+        .animate-delay-400 {
+          animation-delay: 400ms;
+        }
+        
+        .animate-delay-1000 {
+          animation-delay: 1000ms;
+        }
+        
+        .animate-delay-2000 {
+          animation-delay: 2000ms;
+        }
+      `}</style>
     </div>
   );
 };

@@ -612,9 +612,28 @@ const AboutPage = () => {
           animation: float 6s ease-in-out infinite;
         }
         
-        .animate-float-image {
-          animation: float 8s ease-in-out infinite;
-        }
+       .animate-float-image {
+  animation: fadeLeft 1.2s ease-out forwards,
+             float 8s ease-in-out infinite;
+}
+
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
         
         .animate-bounce-in {
           animation: bounceIn 0.6s ease-out forwards;
