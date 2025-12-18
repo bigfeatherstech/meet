@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { 
-  FiMail, 
-  FiPhone, 
-  FiMapPin, 
-  FiClock, 
+import {
+  FiMail,
+  FiPhone,
+  FiMapPin,
+  FiClock,
   FiSend,
   FiCheckCircle,
   FiUser,
@@ -63,7 +63,7 @@ const ContactPage = () => {
       };
 
       const newVisibility = { ...visibleSections };
-      
+
       Object.keys(sections).forEach(key => {
         const section = sections[key];
         if (section) {
@@ -114,12 +114,12 @@ const ContactPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
     setIsSubmitting(false);
     setIsSubmitted(true);
-    
+
     setTimeout(() => {
       setIsSubmitted(false);
       setFormData({
@@ -227,35 +227,35 @@ const ContactPage = () => {
   ];
 
   const activeCategory = faqCategories.find(cat => cat.id === activeTab);
-  const selectedCountry = formData.country 
+  const selectedCountry = formData.country
     ? countryOptions.find(option => option.value === formData.country)
     : null;
 
   const achievements = [
-    { 
-      number: "24/7", 
-      label: "Support", 
+    {
+      number: "24/7",
+      label: "Support",
       icon: <FiShield />,
       suffix: "",
       color: "text-blue-600"
     },
-    { 
-      number: "< 2h", 
-      label: "Response Time", 
+    {
+      number: "< 2h",
+      label: "Response Time",
       icon: <FiClock />,
       suffix: "",
       color: "text-green-600"
     },
-    { 
-      number: "98%", 
-      label: "Satisfaction", 
+    {
+      number: "98%",
+      label: "Satisfaction",
       icon: <FiHeart />,
       suffix: "",
       color: "text-purple-600"
     },
-    { 
-      number: "50+", 
-      label: "Countries Served", 
+    {
+      number: "50+",
+      label: "Countries Served",
       icon: <FiGlobe />,
       suffix: "",
       color: "text-orange-600"
@@ -265,11 +265,10 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Banner - EXACT SAME AS ABOUT PAGE */}
-      <section 
-        id="contact-hero" 
-        className={`relative bg-gradient-to-r from-samsung-blue to-blue-800 text-white py-20 md:py-32 overflow-hidden transition-all duration-1000 ${
-          visibleSections.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
+      <section
+        id="contact-hero"
+        className={`relative bg-gradient-to-r from-samsung-blue to-blue-800 text-white py-20 md:py-32 overflow-hidden transition-all duration-1000 ${visibleSections.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
       >
         <div className="absolute inset-0 bg-black/20" />
         <div className="samsung-container relative z-10">
@@ -286,7 +285,7 @@ const ContactPage = () => {
             </button>
           </div>
         </div>
-        
+
         {/* Floating Elements - Same as About Page */}
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-white/10 rounded-full animate-float" />
         <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-white/10 rounded-full animate-float animate-delay-1000" />
@@ -295,14 +294,13 @@ const ContactPage = () => {
 
       {/* Achievements Bar - Matching About Page Style */}
       <div className="relative -mt-12 samsung-container">
-        <div 
+        <div
           id="contact-cards"
-          className={`bg-white rounded-2xl shadow-2xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 transition-all duration-1000 transform ${
-            visibleSections.contact ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`bg-white rounded-2xl shadow-2xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 transition-all duration-1000 transform ${visibleSections.contact ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
         >
           {achievements.map((achievement, index) => (
-            <div 
+            <div
               key={index}
               className="text-center group"
               style={{ animationDelay: `${index * 100}ms` }}
@@ -320,14 +318,13 @@ const ContactPage = () => {
       </div>
 
       {/* Contact Form & Info Section */}
-      <section 
-        id="contact-form-section" 
+      <section
+        id="contact-form-section"
         className="py-20 samsung-container overflow-hidden"
       >
-        <div className={`grid lg:grid-cols-2 gap-16 transition-all duration-1000 ${
-          visibleSections.form ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-        }`}>
-          
+        <div className={`grid lg:grid-cols-2 gap-16 transition-all duration-1000 ${visibleSections.form ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+          }`}>
+
           {/* Left: Contact Form */}
           <div>
             <h2 className="text-4xl font-bold text-gray-900 mb-6 animate-slide-in-left">
@@ -512,7 +509,7 @@ const ContactPage = () => {
               <h2 className="text-3xl font-bold mb-6">Quick Contact Channels</h2>
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
-                  <div 
+                  <div
                     key={index}
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300 group cursor-pointer"
                   >
@@ -538,70 +535,68 @@ const ContactPage = () => {
               </div>
             </div>
 
-            {/* FAQ Section */}
-            <div className="bg-white rounded-2xl shadow-xl p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 bg-samsung-blue/10 rounded-lg">
-                  <FiMessageSquare className="text-samsung-blue text-2xl" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold text-gray-900">Frequently Asked Questions</h2>
-                  <p className="text-gray-600">Quick answers to common questions</p>
-                </div>
-              </div>
 
-              <div className="flex flex-wrap gap-2 mb-6">
-                {faqCategories.map(category => (
-                  <button
-                    key={category.id}
-                    onClick={() => setActiveTab(category.id)}
-                    className={`px-4 py-2 rounded-lg transition-all duration-300 ${
-                      activeTab === category.id
-                        ? 'bg-samsung-blue text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                  >
-                    {category.title}
-                  </button>
-                ))}
-              </div>
-              
-              <div className="space-y-4">
-                {activeCategory?.questions.map((faq, index) => (
-                  <div 
-                    key={index}
-                    className="border border-gray-200 rounded-xl p-4 hover:border-samsung-blue hover:bg-blue-50 transition-all duration-300 group cursor-pointer"
-                  >
-                    <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-samsung-blue rounded-full mt-2 group-hover:scale-150 transition-transform duration-300"></div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-2 group-hover:text-samsung-blue transition-colors duration-300">
-                          {faq.q}
-                        </h4>
-                        <div className="overflow-hidden">
-                          <p className="text-gray-600 text-sm">
-                            {faq.a}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </section>
+      {/* FAQ Section */}
+      <div className="bg-white rounded-2xl shadow-xl p-8 samsung-container mx-auto my-5">
+        <div className="flex justify-center items-center gap-3 mb-6">
+          <div className="p-2 bg-samsung-blue/10 rounded-lg">
+            <FiMessageSquare className="text-samsung-blue text-2xl" />
+          </div>
+          <div className=''>
+            <h2 className="text-2xl font-bold text-gray-900">Frequently Asked Questions</h2>
+            <p className="text-gray-600">Quick answers to common questions</p>
+          </div>
+        </div>
 
+        <div className="flex justify-center item-center gap-2 mb-6">
+          {faqCategories.map(category => (
+            <button
+              key={category.id}
+              onClick={() => setActiveTab(category.id)}
+              className={`px-4 py-2 rounded-lg transition-all duration-300 ${activeTab === category.id
+                  ? 'bg-samsung-blue text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+            >
+              {category.title}
+            </button>
+          ))}
+        </div>
+
+        <div className="space-y-4">
+          {activeCategory?.questions.map((faq, index) => (
+            <div
+              key={index}
+              className="border border-gray-200 rounded-xl p-4 hover:border-samsung-blue hover:bg-blue-50 transition-all duration-300 group cursor-pointer"
+            >
+              <div className="flex items-start gap-3">
+                <div className="w-2 h-2 bg-samsung-blue rounded-full mt-2 group-hover:scale-150 transition-transform duration-300"></div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-2 group-hover:text-samsung-blue transition-colors duration-300">
+                    {faq.q}
+                  </h4>
+                  <div className="overflow-hidden">
+                    <p className="text-gray-600 text-sm">
+                      {faq.a}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
       {/* Additional Info Section */}
-      <section 
-        id="contact-info" 
+      <section
+        id="contact-info"
         className="py-20 bg-samsung-gray overflow-hidden"
       >
         <div className="samsung-container">
-          <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${
-            visibleSections.info ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}>
+          <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${visibleSections.info ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
             <h2 className="text-4xl font-bold text-gray-900 mb-6">Global Reach, Local Support</h2>
             <p className="text-xl text-gray-600">
               Our support network spans across continents, ensuring you get help whenever and wherever you need it.
