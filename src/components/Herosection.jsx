@@ -15,6 +15,8 @@ const HeroSection = () => {
   const blueSecondary = 'rgb(0, 61, 130)';
   const blueDark = 'rgb(0, 18, 36)';
 
+  //new 
+
   const heroSlides = [
     {
       id: 1,
