@@ -39,7 +39,7 @@
   }
   
   /* Swiper custom styles */
-  .swiper-button-next:after,
+  /* .swiper-button-next:after,
   .swiper-button-prev:after {
     content: '' !important;
   }
@@ -47,7 +47,7 @@
   .swiper-pagination-bullet-active {
     background: white !important;
     transform: scale(1.2);
-  }
+  } */
 }
 
 

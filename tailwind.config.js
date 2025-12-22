@@ -15,14 +15,13 @@ export default {
           'light-gray': '#f8f8f8',
           border: '#e0e0e0',
           'text-gray': '#666666',
+          'gradient-start': '#0d1b2a',     // Deep blue
+          'gradient-mid': '#1b3a4b',       // Medium blue
+          'gradient-end': '#3a506b',       // Lighter blue
 
-              'gradient-start': '#0d1b2a',     // Deep blue
-        'gradient-mid': '#1b3a4b',       // Medium blue
-        'gradient-end': '#3a506b',       // Lighter blue
-
-           backgroundImage: {
-        'premium-gradient': 'linear-gradient(135deg, var(--tw-gradient-stops))',
-      }
+          backgroundImage: {
+            'premium-gradient': 'linear-gradient(135deg, var(--tw-gradient-stops))',
+          }
         }
       },
       animation: {
