@@ -70,7 +70,7 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-gray-50 p-4 md:p-6">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Admin Dashboardddddd</h1>
         <p className="text-gray-600 mt-2">Manage all your products in one place</p>
       </div>
 
