@@ -14,6 +14,7 @@ import 'aos/dist/aos.css';
 import AOS from 'aos';
 import NotFound from './pages/NOTFOUND/NotFound';
 import ProductDetailPage from './pages/PRODUCTDETAIL/ProductDetailPage';
+import AdminDashboard from './ADMIN/AdminDashboard';
 
 function App() {
   // Initialize AOS when component mounts
@@ -63,6 +64,11 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           {/* Catch-all route - must be last */}
           <Route path="*" element={<NotFound />} />
+
+
+
+          {/* ADMIN ROUTES DANGER-ZONE */}
+          <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
       </main>
       <Footer />

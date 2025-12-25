@@ -1,226 +1,963 @@
 [
+
   {
-    "id": 1,
-    "name": "Samsung Galaxy S24 Ultra",
-    "category": "Smartphones",
-    "price": 1299.99,
-    "originalPrice": 1399.99,
-    "discount": 7,
-    "rating": 4.8,
-    "reviewCount": 1240,
-    "image": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop",
-    "description": "Flagship smartphone with advanced AI features, S Pen integration, and 200MP camera.",
-    "features": ["200MP Camera", "S Pen Included", "Titanium Frame", "AI Features"],
-    "stock": 45,
-    "isNew": true,
-    "isFeatured": true
+    "category_name": "Home Appliances",
+    "products": [
+      {
+        "model": "CF-1200X",
+        "product_name": "Ceiling Fans",
+        "brand": "Crompton",
+        "voltage": "220-240V",
+        "power": "70W",
+        "dimensions": "1200mm",
+        "weight": "5.2kg",
+        "key_features": ["Anti-dust finish", "Energy saving BLDC motor", "Remote control", "Summer & Winter mode"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "CF-1200Pro",
+        "product_name": "Ceiling Fans",
+        "brand": "Havells",
+        "voltage": "220-240V",
+        "power": "75W",
+        "dimensions": "1200mm",
+        "weight": "5.5kg",
+        "key_features": ["Smart fan", "Wi-Fi connectivity", "Voice control", "BLDC motor"],
+        "warranty": "3 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "CF-1400D",
+        "product_name": "Ceiling Fans",
+        "brand": "Usha",
+        "voltage": "220V",
+        "power": "80W",
+        "dimensions": "1400mm",
+        "weight": "6.2kg",
+        "key_features": ["Decorative blades", "LED light", "6 speed control", "Metal body"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://t3.ftcdn.net/jpg/18/36/28/38/240_F_1836283895_0cFwbnm5NAdRp4pMPLTC4AS7yU18W5PW.jpg",
+          "https://t3.ftcdn.net/jpg/18/36/28/38/240_F_1836283895_0cFwbnm5NAdRp4pMPLTC4AS7yU18W5PW.jpg",
+          "https://t3.ftcdn.net/jpg/18/36/28/38/240_F_1836283895_0cFwbnm5NAdRp4pMPLTC4AS7yU18W5PW.jpg",
+          "https://t3.ftcdn.net/jpg/18/36/28/38/240_F_1836283895_0cFwbnm5NAdRp4pMPLTC4AS7yU18W5PW.jpg",
+          "https://t3.ftcdn.net/jpg/18/36/28/38/240_F_1836283895_0cFwbnm5NAdRp4pMPLTC4AS7yU18W5PW.jpg"
+        ]
+      },
+      {
+        "model": "CF-900M",
+        "product_name": "Ceiling Fans",
+        "brand": "Bajaj",
+        "voltage": "220V",
+        "power": "60W",
+        "dimensions": "900mm",
+        "weight": "4.8kg",
+        "key_features": ["Mini size", "Balcony fan", "Rust proof", "Low power"],
+        "warranty": "1 Year",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "CF-1050S",
+        "product_name": "Ceiling Fans",
+        "brand": "Orient",
+        "voltage": "220-240V",
+        "power": "65W",
+        "dimensions": "1050mm",
+        "weight": "5.0kg",
+        "key_features": ["Steel blades", "Wall control", "High speed", "Durable"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "TF-400R",
+        "product_name": "Table Fans",
+        "brand": "Usha",
+        "voltage": "220V",
+        "power": "45W",
+        "dimensions": "400mm",
+        "weight": "3.1kg",
+        "key_features": ["3 Speed settings", "Oscillation", "Tilt adjustment", "Overheat protection"],
+        "warranty": "1 Year",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "TF-350M",
+        "product_name": "Table Fans",
+        "brand": "Crompton",
+        "voltage": "220V",
+        "power": "40W",
+        "dimensions": "350mm",
+        "weight": "2.8kg",
+        "key_features": ["Metal body", "2 speeds", "Portable", "Stable base"],
+        "warranty": "1 Year",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "TF-450P",
+        "product_name": "Table Fans",
+        "brand": "Havells",
+        "voltage": "230V",
+        "power": "50W",
+        "dimensions": "450mm",
+        "weight": "3.5kg",
+        "key_features": ["Plastic body", "Wide oscillation", "Carry handle", "Energy efficient"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "TF-300S",
+        "product_name": "Table Fans",
+        "brand": "Bajaj",
+        "voltage": "220V",
+        "power": "35W",
+        "dimensions": "300mm",
+        "weight": "2.5kg",
+        "key_features": ["Small size", "Office use", "Quiet operation", "Adjustable height"],
+        "warranty": "1 Year",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "TF-500D",
+        "product_name": "Table Fans",
+        "brand": "Orient",
+        "voltage": "220V",
+        "power": "55W",
+        "dimensions": "500mm",
+        "weight": "4.0kg",
+        "key_features": ["Decorative design", "Remote control", "Timer function", "High air flow"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "WF-900T",
+        "product_name": "Wall Fans",
+        "brand": "Havells",
+        "voltage": "230V",
+        "power": "55W",
+        "dimensions": "900mm",
+        "weight": "4.5kg",
+        "key_features": ["Wall mounted", "Remote control", "Timer function", "High air throw"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "WF-750S",
+        "product_name": "Wall Fans",
+        "brand": "Crompton",
+        "voltage": "220V",
+        "power": "50W",
+        "dimensions": "750mm",
+        "weight": "4.0kg",
+        "key_features": ["Steel grills", "3 speeds", "Tilt adjustment", "Easy mount"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "WF-600P",
+        "product_name": "Wall Fans",
+        "brand": "Usha",
+        "voltage": "220V",
+        "power": "40W",
+        "dimensions": "600mm",
+        "weight": "3.2kg",
+        "key_features": ["Plastic body", "Kitchen fan", "Moisture proof", "Easy clean"],
+        "warranty": "1 Year",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "WF-1000M",
+        "product_name": "Wall Fans",
+        "brand": "Bajaj",
+        "voltage": "230V",
+        "power": "60W",
+        "dimensions": "1000mm",
+        "weight": "5.0kg",
+        "key_features": ["Metal blades", "High power", "Factory use", "Durable"],
+        "warranty": "3 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "WF-800R",
+        "product_name": "Wall Fans",
+        "brand": "Orient",
+        "voltage": "220V",
+        "power": "48W",
+        "dimensions": "800mm",
+        "weight": "4.2kg",
+        "key_features": ["Reversible", "Summer/winter", "Remote", "Oscillation"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "EX-150",
+        "product_name": "Exhaust Fans",
+        "brand": "Crompton",
+        "voltage": "220V",
+        "power": "25W",
+        "dimensions": "150mm",
+        "weight": "1.8kg",
+        "key_features": ["Moisture resistant", "Low noise", "Easy installation", "Plastic body"],
+        "warranty": "1 Year",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "EX-200P",
+        "product_name": "Exhaust Fans",
+        "brand": "Havells",
+        "voltage": "230V",
+        "power": "30W",
+        "dimensions": "200mm",
+        "weight": "2.2kg",
+        "key_features": ["Powerful suction", "Bathroom use", "Plastic blades", "Shutter included"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "EX-100M",
+        "product_name": "Exhaust Fans",
+        "brand": "Usha",
+        "voltage": "220V",
+        "power": "20W",
+        "dimensions": "100mm",
+        "weight": "1.5kg",
+        "key_features": ["Mini size", "Kitchen hood", "Metal body", "High speed"],
+        "warranty": "1 Year",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "EX-250I",
+        "product_name": "Exhaust Fans",
+        "brand": "Bajaj",
+        "voltage": "220V",
+        "power": "35W",
+        "dimensions": "250mm",
+        "weight": "2.8kg",
+        "key_features": ["Industrial grade", "Metal construction", "High CFM", "IP44 rated"],
+        "warranty": "3 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "EX-180D",
+        "product_name": "Exhaust Fans",
+        "brand": "Orient",
+        "voltage": "220V",
+        "power": "28W",
+        "dimensions": "180mm",
+        "weight": "2.0kg",
+        "key_features": ["Decorative cover", "Quiet operation", "Easy maintenance", "Plastic"],
+        "warranty": "1 Year",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "AC-65L",
+        "product_name": "Air Coolers",
+        "brand": "Symphony",
+        "voltage": "220V",
+        "power": "200W",
+        "dimensions": "65L tank",
+        "weight": "18kg",
+        "key_features": ["65L capacity", "4-way air deflection", "Ice chamber", "Remote control"],
+        "warranty": "1 Year",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "AC-45P",
+        "product_name": "Air Coolers",
+        "brand": "Crompton",
+        "voltage": "220V",
+        "power": "150W",
+        "dimensions": "45L tank",
+        "weight": "15kg",
+        "key_features": ["Portable", "Castor wheels", "Auto swing", "3 speeds"],
+        "warranty": "1 Year",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "AC-80T",
+        "product_name": "Air Coolers",
+        "brand": "Bajaj",
+        "voltage": "220V",
+        "power": "250W",
+        "dimensions": "80L tank",
+        "weight": "22kg",
+        "key_features": ["Tower design", "Digital display", "Humidifier", "Sleep mode"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "AC-35M",
+        "product_name": "Air Coolers",
+        "brand": "Usha",
+        "voltage": "220V",
+        "power": "120W",
+        "dimensions": "35L tank",
+        "weight": "12kg",
+        "key_features": ["Mini cooler", "Room use", "Low power", "Easy fill"],
+        "warranty": "1 Year",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "AC-100D",
+        "product_name": "Air Coolers",
+        "brand": "Havells",
+        "voltage": "230V",
+        "power": "300W",
+        "dimensions": "100L tank",
+        "weight": "25kg",
+        "key_features": ["Desert cooler", "High cooling", "4 motors", "Heavy duty"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      }
+    ]
   },
   {
-    "id": 2,
-    "name": "Samsung Odyssey G9 Monitor",
-    "category": "Monitors",
-    "price": 999.99,
-    "originalPrice": 1299.99,
-    "discount": 23,
-    "rating": 4.7,
-    "reviewCount": 856,
-    "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w-800&auto=format&fit=crop",
-    "description": "49-inch Dual QHD curved gaming monitor with 240Hz refresh rate.",
-    "features": ["49\" Curved", "240Hz", "1ms Response", "QLED"],
-    "stock": 28,
-    "isNew": false,
-    "isFeatured": true
-  },
-  {
-    "id": 3,
-    "name": "Samsung QLED 8K TV",
-    "category": "Televisions",
-    "price": 2999.99,
-    "originalPrice": 3499.99,
-    "discount": 14,
-    "rating": 4.9,
-    "reviewCount": 632,
-    "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=800&auto=format&fit=crop",
-    "description": "85-inch 8K QLED Smart TV with Quantum HDR and Object Tracking Sound.",
-    "features": ["85\" Display", "8K Resolution", "Quantum HDR", "Smart TV"],
-    "stock": 15,
-    "isNew": true,
-    "isFeatured": true
-  },
-  {
-    "id": 4,
-    "name": "Samsung Bespoke Refrigerator",
-    "category": "Home Appliances",
-    "price": 2499.99,
-    "originalPrice": 2799.99,
-    "discount": 11,
-    "rating": 4.6,
-    "reviewCount": 423,
-    "image": "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=800&auto=format&fit=crop",
-    "description": "Customizable French Door refrigerator with Family Hub and Beverage Center.",
-    "features": ["Customizable", "Family Hub", "Beverage Center", "AI Energy Mode"],
-    "stock": 32,
-    "isNew": true,
-    "isFeatured": false
-  },
-  {
-    "id": 5,
-    "name": "Samsung Galaxy Book4 Pro",
-    "category": "Laptops",
-    "price": 1499.99,
-    "originalPrice": 1699.99,
-    "discount": 12,
-    "rating": 4.5,
-    "reviewCount": 312,
-    "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&auto=format&fit=crop",
-    "description": "16-inch AMOLED display laptop with Intel Core Ultra 7 processor.",
-    "features": ["16\" AMOLED", "Intel Core Ultra 7", "32GB RAM", "2TB SSD"],
-    "stock": 41,
-    "isNew": true,
-    "isFeatured": true
-  },
-  {
-    "id": 6,
-    "name": "Samsung Galaxy Watch6",
-    "category": "Wearables",
-    "price": 349.99,
-    "originalPrice": 399.99,
-    "discount": 13,
-    "rating": 4.4,
-    "reviewCount": 892,
-    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop",
-    "description": "Advanced health monitoring smartwatch with sleep coaching and body composition.",
-    "features": ["Health Tracking", "Sleep Coaching", "5ATM Waterproof", "3-Day Battery"],
-    "stock": 67,
-    "isNew": false,
-    "isFeatured": true
-  },
-  {
-    "id": 7,
-    "name": "Samsung Soundbar Q990C",
-    "category": "Audio",
-    "price": 899.99,
-    "originalPrice": 1199.99,
-    "discount": 25,
-    "rating": 4.8,
-    "reviewCount": 567,
-    "image": "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=800&auto=format&fit=crop",
-    "description": "11.1.4ch Wireless Dolby Atmos Soundbar with SpaceFit Sound Pro.",
-    "features": ["Dolby Atmos", "Wireless Subwoofer", "11.1.4ch", "SpaceFit Sound"],
-    "stock": 24,
-    "isNew": false,
-    "isFeatured": true
-  },
-  {
-    "id": 8,
-    "name": "Samsung Portable SSD T9",
-    "category": "Storage",
-    "price": 199.99,
-    "originalPrice": 249.99,
-    "discount": 20,
-    "rating": 4.7,
-    "reviewCount": 1345,
-    "image": "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=800&auto=format&fit=crop",
-    "description": "2TB Portable SSD with USB 3.2 Gen 2x2 interface, speeds up to 2,000MB/s.",
-    "features": ["2TB Capacity", "2000MB/s", "Rugged Design", "USB 3.2 Gen 2x2"],
-    "stock": 89,
-    "isNew": false,
-    "isFeatured": false
-  },
-  {
-    "id": 9,
-    "name": "Samsung Jet Bot AI+",
-    "category": "Smart Home",
-    "price": 799.99,
-    "originalPrice": 999.99,
-    "discount": 20,
-    "rating": 4.3,
-    "reviewCount": 287,
-    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop",
-    "description": "AI-powered robot vacuum with LiDAR navigation and self-cleaning station.",
-    "features": ["LiDAR Navigation", "Self-Cleaning", "30-Day Capacity", "AI Object Recognition"],
-    "stock": 36,
-    "isNew": true,
-    "isFeatured": true
-  },
-  {
-    "id": 10,
-    "name": "Samsung The Freestyle",
-    "category": "Projectors",
-    "price": 599.99,
-    "originalPrice": 799.99,
-    "discount": 25,
-    "rating": 4.2,
-    "reviewCount": 198,
-    "image": "https://images.unsplash.com/photo-1504270997636-07ddfbd48945?w=800&auto=format&fit=crop",
-    "description": "Portable smart projector with 360-degree rotation and auto-focus.",
-    "features": ["Portable", "Smart TV Built-in", "360° Rotation", "Auto Focus"],
-    "stock": 52,
-    "isNew": true,
-    "isFeatured": false
-  },
-  {
-    "id": 11,
-    "name": "Samsung The Freestyle",
-    "category": "Projectors",
-    "price": 599.99,
-    "originalPrice": 799.99,
-    "discount": 25,
-    "rating": 4.2,
-    "reviewCount": 198,
-    "image": "https://images.unsplash.com/photo-1504270997636-07ddfbd48945?w=800&auto=format&fit=crop",
-    "description": "Portable smart projector with 360-degree rotation and auto-focus.",
-    "features": ["Portable", "Smart TV Built-in", "360° Rotation", "Auto Focus"],
-    "stock": 52,
-    "isNew": true,
-    "isFeatured": false
-  },
-  {
-    "id": 12,
-    "name": "Samsung The Freestyle",
-    "category": "Projectors",
-    "price": 599.99,
-    "originalPrice": 799.99,
-    "discount": 25,
-    "rating": 4.2,
-    "reviewCount": 198,
-    "image": "https://images.unsplash.com/photo-1504270997636-07ddfbd48945?w=800&auto=format&fit=crop",
-    "description": "Portable smart projector with 360-degree rotation and auto-focus.",
-    "features": ["Portable", "Smart TV Built-in", "360° Rotation", "Auto Focus"],
-    "stock": 52,
-    "isNew": true,
-    "isFeatured": false
-  },
-  {
-    "id": 13,
-    "name": "Samsung The Freestyle",
-    "category": "Projectors",
-    "price": 599.99,
-    "originalPrice": 799.99,
-    "discount": 25,
-    "rating": 4.2,
-    "reviewCount": 198,
-    "image": "https://images.unsplash.com/photo-1504270997636-07ddfbd48945?w=800&auto=format&fit=crop",
-    "description": "Portable smart projector with 360-degree rotation and auto-focus.",
-    "features": ["Portable", "Smart TV Built-in", "360° Rotation", "Auto Focus"],
-    "stock": 52,
-    "isNew": true,
-    "isFeatured": false
-  },
-  {
-    "id": 14,
-    "name": "Freestyle",
-    "category": "Projectors",
-    "price": 599.99,
-    "originalPrice": 799.99,
-    "discount": 25,
-    "rating": 4.2,
-    "reviewCount": 198,
-    "image": "https://images.unsplash.com/photo-1504270997636-07ddfbd48945?w=800&auto=format&fit=crop",
-    "description": "Portable smart projector with 360-degree rotation and auto-focus.",
-    "features": ["Portable", "Smart TV Built-in", "360° Rotation", "Auto Focus"],
-    "stock": 52,
-    "isNew": true,
-    "isFeatured": false
+    "category_name": "Kitchen Appliances",
+    "products": [
+      {
+        "model": "MG-550P",
+        "product_name": "Mixer Grinder",
+        "brand": "Bajaj",
+        "voltage": "230V",
+        "power": "550W",
+        "dimensions": "30x20x35 cm",
+        "weight": "4.8kg",
+        "key_features": ["3 Jars", "Stainless steel blades", "Overload protection", "500W motor"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "MG-750X",
+        "product_name": "Mixer Grinder",
+        "brand": "Philips",
+        "voltage": "220-240V",
+        "power": "750W",
+        "dimensions": "35x25x40 cm",
+        "weight": "5.5kg",
+        "key_features": ["4 Jars", "Copper motor", "Unbreakable jars", "2 years warranty"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "MG-500M",
+        "product_name": "Mixer Grinder",
+        "brand": "Usha",
+        "voltage": "220V",
+        "power": "500W",
+        "dimensions": "28x18x32 cm",
+        "weight": "4.2kg",
+        "key_features": ["3 jars", "Wet & dry grinding", "Stainless steel", "Safety lock"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "MG-1000S",
+        "product_name": "Mixer Grinder",
+        "brand": "Preethi",
+        "voltage": "230V",
+        "power": "1000W",
+        "dimensions": "40x30x45 cm",
+        "weight": "7.2kg",
+        "key_features": ["Super motor", "6 jars", "Commercial use", "Heavy duty"],
+        "warranty": "5 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "MG-600C",
+        "product_name": "Mixer Grinder",
+        "brand": "Butterfly",
+        "voltage": "220V",
+        "power": "600W",
+        "dimensions": "32x22x38 cm",
+        "weight": "5.0kg",
+        "key_features": ["Compact design", "3 jars", "Multi-purpose", "BPA free"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "JM-400",
+        "product_name": "Juicer Mixer",
+        "brand": "Bajaj",
+        "voltage": "220V",
+        "power": "500W",
+        "dimensions": "30x25x35 cm",
+        "weight": "3.8kg",
+        "key_features": ["Juicer + mixer", "2 jars", "Citrus press", "Pulp collector"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "JM-600P",
+        "product_name": "Juicer Mixer",
+        "brand": "Philips",
+        "voltage": "220-240V",
+        "power": "600W",
+        "dimensions": "35x28x40 cm",
+        "weight": "4.5kg",
+        "key_features": ["Powerful motor", "3 functions", "Easy clean", "BPA free"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "JM-350C",
+        "product_name": "Juicer Mixer",
+        "brand": "Usha",
+        "voltage": "220V",
+        "power": "350W",
+        "dimensions": "28x22x32 cm",
+        "weight": "3.2kg",
+        "key_features": ["Compact", "Juice extractor", "Mixer grinder", "Affordable"],
+        "warranty": "1 Year",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "JM-750M",
+        "product_name": "Juicer Mixer",
+        "brand": "Morphy Richards",
+        "voltage": "230V",
+        "power": "750W",
+        "dimensions": "38x30x42 cm",
+        "weight": "5.2kg",
+        "key_features": ["Multi-function", "Centrifugal juicer", "Blender", "Chopper"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "JM-550S",
+        "product_name": "Juicer Mixer",
+        "brand": "Butterfly",
+        "voltage": "220V",
+        "power": "550W",
+        "dimensions": "32x26x36 cm",
+        "weight": "4.0kg",
+        "key_features": ["Stainless steel", "3 jars", "Juice strainer", "Warranty"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "IC-1800",
+        "product_name": "Induction Cooktop",
+        "brand": "Philips",
+        "voltage": "220V",
+        "power": "1800W",
+        "dimensions": "30x30x5 cm",
+        "weight": "2.5kg",
+        "key_features": ["Touch control", "8 power levels", "Auto shut-off", "Child lock"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "IC-2000P",
+        "product_name": "Induction Cooktop",
+        "brand": "Prestige",
+        "voltage": "220V",
+        "power": "2000W",
+        "dimensions": "32x32x6 cm",
+        "weight": "2.8kg",
+        "key_features": ["Powerful", "10 cooking modes", "Timer", "Overheat protection"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "IC-1500C",
+        "product_name": "Induction Cooktop",
+        "brand": "Bajaj",
+        "voltage": "220V",
+        "power": "1500W",
+        "dimensions": "28x28x5 cm",
+        "weight": "2.2kg",
+        "key_features": ["Compact", "5 power levels", "Portable", "Energy saving"],
+        "warranty": "1 Year",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "IC-2100D",
+        "product_name": "Induction Cooktop",
+        "brand": "Havells",
+        "voltage": "230V",
+        "power": "2100W",
+        "dimensions": "35x35x7 cm",
+        "weight": "3.2kg",
+        "key_features": ["Digital display", "15 power levels", "Pre-set menus", "Safety features"],
+        "warranty": "3 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "IC-1700M",
+        "product_name": "Induction Cooktop",
+        "brand": "Usha",
+        "voltage": "220V",
+        "power": "1700W",
+        "dimensions": "30x30x6 cm",
+        "weight": "2.6kg",
+        "key_features": ["Magnetic", "7 cooking functions", "Auto pan detect", "Easy clean"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "EK-1.5L",
+        "product_name": "Electric Kettle",
+        "brand": "Philips",
+        "voltage": "220V",
+        "power": "1500W",
+        "dimensions": "20x20x25 cm",
+        "weight": "1.2kg",
+        "key_features": ["1.5L capacity", "Auto shut-off", "Boil-dry protection", "Stainless steel"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "EK-1.8G",
+        "product_name": "Electric Kettle",
+        "brand": "Morphy Richards",
+        "voltage": "220V",
+        "power": "1800W",
+        "dimensions": "22x22x28 cm",
+        "weight": "1.5kg",
+        "key_features": ["1.8L capacity", "Glass body", "LED light", "Quick boil"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "EK-1.0C",
+        "product_name": "Electric Kettle",
+        "brand": "Bajaj",
+        "voltage": "220V",
+        "power": "1200W",
+        "dimensions": "18x18x22 cm",
+        "weight": "0.9kg",
+        "key_features": ["1.0L capacity", "Compact", "Cordless", "360° base"],
+        "warranty": "1 Year",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "EK-1.2P",
+        "product_name": "Electric Kettle",
+        "brand": "Prestige",
+        "voltage": "220V",
+        "power": "1500W",
+        "dimensions": "19x19x24 cm",
+        "weight": "1.1kg",
+        "key_features": ["1.2L capacity", "Plastic body", "Budget", "Auto off"],
+        "warranty": "1 Year",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "EK-2.0S",
+        "product_name": "Electric Kettle",
+        "brand": "Havells",
+        "voltage": "230V",
+        "power": "2000W",
+        "dimensions": "24x24x30 cm",
+        "weight": "1.8kg",
+        "key_features": ["2.0L capacity", "Stainless steel", "Concealed heating", "Fast boil"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "RC-1.8L",
+        "product_name": "Rice Cooker",
+        "brand": "Philips",
+        "voltage": "220V",
+        "power": "700W",
+        "dimensions": "25x25x30 cm",
+        "weight": "3.2kg",
+        "key_features": ["1.8L capacity", "Non-stick bowl", "Auto keep warm", "Steam tray"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "RC-2.0D",
+        "product_name": "Rice Cooker",
+        "brand": "Morphy Richards",
+        "voltage": "220V",
+        "power": "800W",
+        "dimensions": "28x28x35 cm",
+        "weight": "3.8kg",
+        "key_features": ["2.0L capacity", "Digital display", "Multiple functions", "Delay timer"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "RC-1.5P",
+        "product_name": "Rice Cooker",
+        "brand": "Prestige",
+        "voltage": "220V",
+        "power": "600W",
+        "dimensions": "22x22x27 cm",
+        "weight": "2.8kg",
+        "key_features": ["1.5L capacity", "Basic model", "Auto off", "Non-stick"],
+        "warranty": "1 Year",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "RC-3.0M",
+        "product_name": "Rice Cooker",
+        "brand": "Bajaj",
+        "voltage": "220V",
+        "power": "1000W",
+        "dimensions": "35x35x40 cm",
+        "weight": "5.2kg",
+        "key_features": ["3.0L capacity", "Family size", "Multi-cooker", "Keep warm"],
+        "warranty": "2 Years",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      },
+      {
+        "model": "RC-1.0S",
+        "product_name": "Rice Cooker",
+        "brand": "Usha",
+        "voltage": "220V",
+        "power": "500W",
+        "dimensions": "20x20x24 cm",
+        "weight": "2.5kg",
+        "key_features": ["1.0L capacity", "Single serving", "Compact", "Portable"],
+        "warranty": "1 Year",
+        "country_of_origin": "India",
+        "images": [
+          "https://images.unsplash.com/photo-1585730061512-2e0d5b5d4c55?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop"
+        ]
+      }
+    ]
   }
 ]

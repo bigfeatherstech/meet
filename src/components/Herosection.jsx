@@ -7,6 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -16,6 +17,7 @@ const HeroSection = () => {
   const blueDark = 'rgb(0, 18, 36)';
 
   //new 
+  const navigate = useNavigate();
 
   const heroSlides = [
     {
@@ -426,93 +428,99 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="mt-20 container mx-auto px-4 lg:px-8" >
-        <div className="text-center mb-12"  data-aos="fade-down"   data-aos-delay="200">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Shop by Category
-          </h2>
-          <p className="text-gray-600 text-xl max-w-3xl mx-auto">
-            Discover our premium electronics collection across all categories
-          </p>
+    <div className="mt-20 container mx-auto px-4 lg:px-8">
+  <div className="text-center mb-12" data-aos="fade-down" data-aos-delay="200">
+    <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+      Shop by Category
+    </h2>
+    <p className="text-gray-600 text-xl max-w-3xl mx-auto">
+      Discover our premium electronics collection across all categories
+    </p>
+  </div>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    {[
+      {
+        name: 'Kitchen Appliances',
+        count: '125+ Products',
+        image: '/png/KITCHEN2.png',
+        highlight: 'New Models',
+        id: 'Kitchen Appliances'
+      },
+      {
+        name: 'Large Appliances',
+        count: '89+ Products',
+        image: '/png/LARGE.png',
+        highlight: 'Premium Range',
+        id: 'Large Appliances'
+      },
+      {
+        name: 'Personal Care Appliances',
+        count: '67+ Products',
+        image: '/png/PERSNOL.png',
+        highlight: 'Smart Tech',
+        id: 'Personal Care Appliances'
+      },
+      {
+        name: 'Home Appliances',
+        count: '142+ Products',
+        image: '/png/home1.png',
+        highlight: 'Energy Efficient',
+        id: 'Home Appliances'
+      }
+    ].map((category, index) => (
+      <div
+        key={index}
+        className="relative overflow-hidden rounded-2xl p-8 transition-all duration-500 hover:scale-[1.02] cursor-pointer group border border-gray-200 hover:border-gray-300"
+        data-aos="fade-up"
+        data-aos-delay={index * 200}
+        data-aos-duration="600"
+        data-aos-once="true"
+        onClick={() => navigate('/products', { 
+          state: { selectedCategory: category.id } 
+        })}
+        style={{
+          background: `linear-gradient(135deg, rgba(0, 42, 100, 0.05) 0%, rgba(0, 61, 130, 0.08) 100%)`
+        }}
+      >
+        <div className="relative z-10">
+          <div className="mb-6">
+            <img
+              src={category.image}
+              alt={category.name}
+              className="w-99 h-auto object-contain"
+            />
+          </div>
+          <h3 className="text-2xl font-bold text-gray-900 mb-3">
+            {category.name}
+          </h3>
+          <div className="flex items-center justify-between mb-6">
+            <p className="text-gray-700">{category.count}</p>
+            <span className="px-3 py-1 rounded-full text-sm font-medium"
+              style={{
+                backgroundColor: `rgba(0, 61, 130, 0.1)`,
+                color: blueSecondary
+              }}>
+              {category.highlight}
+            </span>
+          </div>
+          <div className="text-gray-900 font-bold text-lg flex items-center gap-3 group-hover:gap-5 transition-all duration-300">
+            <span>Browse Collection</span>
+            <svg className="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            {
-              name: 'Smartphones',
-              count: '125+ Products',
-              image: '/png/mobile.png',
-              highlight: 'New Models'
-            },
-            {
-              name: 'Laptops & PCs',
-              count: '89+ Products',
-              image: '/png/laptop.png',
-              highlight: 'Gaming Ready'
-            },
-            {
-              name: 'TV & Audio',
-              count: '67+ Products',
-              image: '/png/tv.png',
-              highlight: '8K & Dolby'
-            },
-            {
-              name: 'Home Appliances',
-              count: '142+ Products',
-              image: '/png/home.png',
-              highlight: 'Smart Home'
-            }
-          ].map((category, index) => (
-            <div
-              key={index}
-              className="relative overflow-hidden rounded-2xl p-8 transition-all duration-500 hover:scale-[1.02] cursor-pointer group border border-gray-200 hover:border-gray-300"
-                 data-aos="fade-up"
-                data-aos-delay={index * 200} // Stagger delay: 0ms, 100ms, 200ms, 300ms
-                data-aos-duration="600"
-                data-aos-once="true"
-              style={{
-                background: `linear-gradient(135deg, rgba(0, 42, 100, 0.05) 0%, rgba(0, 61, 130, 0.08) 100%)`
-              }}
-            >
-              <div className="relative z-10">
-                {/* <div className="text-4xl mb-6">{category.icon}</div> */}
-                <div className="mb-6">
-                  <img
-                    src={category.image}
-                    alt={category.name}
-                    className="w-99 h-auto object-contain"
-                  />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                  {category.name}
-                </h3>
-                <div className="flex items-center justify-between mb-6">
-                  <p className="text-gray-700">{category.count}</p>
-                  <span className="px-3 py-1 rounded-full text-sm font-medium"
-                    style={{
-                      backgroundColor: `rgba(0, 61, 130, 0.1)`,
-                      color: blueSecondary
-                    }}>
-                    {category.highlight}
-                  </span>
-                </div>
-                <button className="text-gray-900 font-bold text-lg flex items-center gap-3 group-hover:gap-5 transition-all duration-300">
-                  <span>Browse Collection</span>
-                  <svg className="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </button>
-              </div>
-
-              <div className="absolute bottom-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{
-                  background: `linear-gradient(to right, ${bluePrimary}, ${blueSecondary})`
-                }}>
-              </div>
-            </div>
-          ))}
+        <div className="absolute bottom-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{
+            background: `linear-gradient(to right, ${bluePrimary}, ${blueSecondary})`
+          }}>
         </div>
       </div>
+    ))}
+  </div>
+</div>
 
       <style jsx>{`
         @keyframes shimmer {

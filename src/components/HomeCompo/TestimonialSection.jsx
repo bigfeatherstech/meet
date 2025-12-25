@@ -560,6 +560,10 @@ const TestimonialSection = () => {
           ].map((stat, index) => (
             <div 
               key={index}
+                    data-aos="fade-up"
+                data-aos-delay={index * 200} // Stagger delay: 0ms, 100ms, 200ms, 300ms
+                data-aos-duration="600"
+                data-aos-once="true"
               className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1"
             >
               <div className="text-3xl font-bold mb-2" style={{ color: bluePrimary }}>{stat.value}</div>
