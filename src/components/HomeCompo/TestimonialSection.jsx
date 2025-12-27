@@ -581,7 +581,7 @@ const TestimonialSection = () => {
               Share Your Experience
             </h3>
             <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
-              Purchased from ElectroStore? Share your story and help others make informed decisions.
+              Purchased from Meet Appliances Ltd? Share your story and help others make informed decisions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-2xl"

@@ -6,11 +6,8 @@ import {
   FiStar, 
   FiEye,
   FiZap,
-  FiTag,
-  FiCheck,
   FiTruck,
   FiShield,
-  FiClock,
   FiArrowRight,
   FiPause,
   FiPlay,
@@ -21,7 +18,7 @@ import { useInView } from 'react-intersection-observer';
 import isEqual from 'react-fast-compare';
 import categoriesData from '../../DATA/data.json';
 
-// Amazon/Flipkart Style Product Card Component
+// Optimized Product Card with Lazy Loading
 const ProductCard = memo(({ 
   product, 
   isHovered, 
@@ -29,19 +26,14 @@ const ProductCard = memo(({
   onMouseLeave,
   bluePrimary,
   blueSecondary,
-  blueDark,
-  renderStars,
-  onViewDetails
+  handleViewDetails
 }) => {
   const navigate = useNavigate();
   const { ref, inView } = useInView({
     triggerOnce: true,
     rootMargin: '200px 0px',
+    threshold: 0.1
   });
-
-  const handleViewDetails = () => {
-    navigate(`/products/${product.model}`);
-  };
 
   return (
     <div
@@ -50,17 +42,16 @@ const ProductCard = memo(({
       onMouseEnter={() => onMouseEnter(product.model)}
       onMouseLeave={onMouseLeave}
     >
-      {/* Amazon/Flipkart Style Card Container */}
       <div className={`bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 h-full flex flex-col ${
         isHovered ? 'transform -translate-y-1 shadow-lg border-gray-300' : ''
       }`}>
         
-        {/* Image Container - Amazon Style */}
+        {/* Image Container with Lazy Loading */}
         <div className="relative overflow-hidden bg-white p-4 flex items-center justify-center h-56">
           {inView ? (
             <>
               <img
-                src={product.images[0]}
+                src={product.images?.[0] || 'https://via.placeholder.com/400x400?text=Product+Image'}
                 alt={product.product_name}
                 loading="lazy"
                 className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
@@ -69,12 +60,12 @@ const ProductCard = memo(({
                 }}
               />
               
-              {/* Quick View Overlay - Amazon Style */}
+              {/* Quick View Overlay */}
               <div className={`absolute inset-0 bg-gradient-to-t from-black/20 to-transparent flex items-end justify-center pb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
                 isHovered ? 'opacity-100' : ''
               }`}>
                 <button 
-                  onClick={handleViewDetails}
+                  onClick={() => handleViewDetails(product.model)}
                   className="w-full mx-4 py-2.5 bg-white rounded-md font-medium text-sm hover:bg-gray-50 transition-colors duration-200 flex items-center justify-center gap-2 shadow-md"
                   style={{ color: bluePrimary }}
                 >
@@ -87,47 +78,36 @@ const ProductCard = memo(({
             <div className="w-full h-full bg-gray-100 animate-pulse rounded"></div>
           )}
           
-          {/* Top Badges - Amazon Style */}
-          <div className="absolute top-2 left-2 flex flex-col gap-1">
-            {product.discount > 15 && (
+          {/* Discount Badge */}
+          {product.discount > 15 && (
+            <div className="absolute top-2 left-2">
               <span 
                 className="px-2 py-1 text-white text-xs font-bold rounded"
                 style={{ backgroundColor: bluePrimary }}
               >
                 {product.discount}% OFF
               </span>
-            )}
-            {product.isNew && (
-              <span 
-                className="px-2 py-1 text-white text-xs font-bold rounded"
-                style={{ backgroundColor: blueSecondary }}
-              >
-                NEW
-              </span>
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
-        {/* Product Info Container - Amazon/Flipkart Style */}
+        {/* Product Info */}
         <div className="p-4 flex-grow flex flex-col border-t border-gray-100">
-          
-          {/* Category/Brand */}
           <div className="mb-1">
             <span className="text-xs text-gray-500 font-medium">
               {product.brand}
             </span>
           </div>
           
-          {/* Product Name - Amazon Style */}
           <h3 
-            className="text-sm text-gray-900 font-medium mb-2 line-clamp-2 transition-colors cursor-pointer h-10"
-            onClick={handleViewDetails}
-            style={{ '--tw-text-opacity': 1, color: `rgba(0, 42, 100, var(--tw-text-opacity))` }}
+            className="text-sm text-gray-900 font-medium mb-2 line-clamp-2 cursor-pointer h-10"
+            onClick={() => handleViewDetails(product.model)}
+            style={{ color: bluePrimary }}
           >
             {product.product_name} - {product.model}
           </h3>
           
-          {/* Ratings - Amazon Style */}
+          {/* Ratings */}
           <div className="flex items-center gap-1 mb-3">
             <div 
               className="flex items-center text-white text-xs px-1.5 py-0.5 rounded"
@@ -141,28 +121,24 @@ const ProductCard = memo(({
             </span>
           </div>
           
-          {/* Key Specs Grid - Clean Amazon Style */}
+          {/* Key Specs */}
           <div className="mb-4">
             <div className="grid grid-cols-2 gap-y-2 gap-x-3">
-              {/* Power */}
               <div className="flex items-center">
                 <span className="text-xs text-gray-600 mr-1">Power:</span>
                 <span className="text-xs font-medium text-gray-900">{product.power}</span>
               </div>
               
-              {/* Voltage */}
               <div className="flex items-center">
                 <span className="text-xs text-gray-600 mr-1">Voltage:</span>
                 <span className="text-xs font-medium text-gray-900">{product.voltage}</span>
               </div>
               
-              {/* Brand */}
               <div className="flex items-center">
                 <span className="text-xs text-gray-600 mr-1">Brand:</span>
                 <span className="text-xs font-medium text-gray-900">{product.brand}</span>
               </div>
               
-              {/* Origin */}
               <div className="flex items-center">
                 <span className="text-xs text-gray-600 mr-1">Origin:</span>
                 <span className="text-xs font-medium text-gray-900">{product.country_of_origin}</span>
@@ -170,7 +146,7 @@ const ProductCard = memo(({
             </div>
           </div>
           
-          {/* Warranty Badge - Flipkart Style */}
+          {/* Warranty Badge */}
           <div className="mb-4">
             <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border"
               style={{ 
@@ -184,32 +160,26 @@ const ProductCard = memo(({
             </div>
           </div>
           
-          {/* Price Section (Optional) - Amazon Style */}
-          {product.price && (
+          {/* Price */}
+          {/* {product.price && (
             <div className="mb-4">
               <div className="flex items-baseline gap-2">
                 <span className="text-lg font-bold text-gray-900">
                   ₹{product.price.toLocaleString()}
                 </span>
                 {product.originalPrice > product.price && (
-                  <>
-                    <span className="text-sm text-gray-500 line-through">
-                      ₹{product.originalPrice.toLocaleString()}
-                    </span>
-                    <span className="text-xs font-medium text-green-600">
-                      Save ₹{(product.originalPrice - product.price).toLocaleString()}
-                    </span>
-                  </>
+                  <span className="text-sm text-gray-500 line-through">
+                    ₹{product.originalPrice.toLocaleString()}
+                  </span>
                 )}
               </div>
             </div>
-          )}
+          )} */}
           
-          {/* Action Buttons - Amazon Style */}
+          {/* Action Buttons */}
           <div className="mt-auto space-y-2">
-            {/* Enquiry Button - Primary */}
             <button 
-              onClick={handleViewDetails}
+              onClick={() => handleViewDetails(product.model)}
               className="w-full py-2.5 text-white rounded-md font-medium text-sm transition-all duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-2"
               style={{ 
                 background: `linear-gradient(to right, ${bluePrimary}, ${blueSecondary})`
@@ -219,7 +189,6 @@ const ProductCard = memo(({
               Enquire Now
             </button>
             
-            {/* Additional Info - Amazon Style */}
             <div className="flex items-center justify-between text-xs text-gray-500">
               <div className="flex items-center gap-1">
                 <FiTruck className="text-green-600" />
@@ -237,36 +206,7 @@ const ProductCard = memo(({
   );
 }, isEqual);
 
-// Helper function to flatten all products from categories
-const flattenProducts = (categories) => {
-  const allProducts = [];
-  categories.forEach(category => {
-    category.products.forEach(product => {
-      // Generate realistic prices for Indian market (in rupees)
-      const basePrice = Math.floor(Math.random() * 10000) + 1000;
-      const discount = Math.floor(Math.random() * 35) + 5;
-      const discountedPrice = Math.floor(basePrice * (1 - discount/100));
-      
-      allProducts.push({
-        ...product,
-        category: category.category_name,
-        id: product.model,
-        isFeatured: Math.random() > 0.5,
-        isNew: Math.random() > 0.7,
-        discount: discount,
-        rating: (Math.random() * 1.5 + 3.5).toFixed(1),
-        reviewCount: Math.floor(Math.random() * 1000) + 50,
-        price: discountedPrice,
-        originalPrice: basePrice,
-        stock: Math.floor(Math.random() * 100) + 10,
-        description: `${product.brand} ${product.product_name} - ${product.model}. Features include ${product.key_features.slice(0, 3).join(', ')}. Perfect for home and commercial use with ${product.warranty} warranty.`
-      });
-    });
-  });
-  return allProducts;
-};
-
-// Main Component (Remains mostly the same with styling updates)
+// Main Component
 const ProductSlider = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
@@ -281,15 +221,40 @@ const ProductSlider = () => {
   const [mounted, setMounted] = useState(false);
   
   const autoPlayRef = useRef(null);
-  const sliderContainerRef = useRef(null);
-  const sliderRef = useRef(null);
+  const containerRef = useRef(null);
 
-  // Define the same color variables as in HomePage
+  // Colors
   const bluePrimary = 'rgb(0, 42, 100)';
   const blueSecondary = 'rgb(0, 61, 130)';
-  const blueDark = 'rgb(0, 18, 36)';
 
-  // Load and flatten products
+  // Helper function to flatten products
+  const flattenProducts = (categoriesData) => {
+    const allProducts = [];
+    categoriesData.forEach(category => {
+      category.products.forEach(product => {
+        const basePrice = Math.floor(Math.random() * 10000) + 1000;
+        const discount = Math.floor(Math.random() * 35) + 5;
+        const discountedPrice = Math.floor(basePrice * (1 - discount/100));
+        
+        allProducts.push({
+          ...product,
+          category: category.category_name,
+          id: product.model || `${category.category_name}-${product.product_name}`,
+          isFeatured: Math.random() > 0.5,
+          discount: discount,
+          rating: (Math.random() * 1.5 + 3.5).toFixed(1),
+          reviewCount: Math.floor(Math.random() * 1000) + 50,
+          price: discountedPrice,
+          originalPrice: basePrice,
+          stock: Math.floor(Math.random() * 100) + 10,
+          images: product.images || ['https://via.placeholder.com/400x400?text=Product+Image']
+        });
+      });
+    });
+    return allProducts;
+  };
+
+  // Load products
   useEffect(() => {
     setCategories(categoriesData);
     const flattened = flattenProducts(categoriesData);
@@ -297,7 +262,7 @@ const ProductSlider = () => {
     setMounted(true);
   }, []);
 
-  // Debounced resize handler
+  // Responsive visible count
   useEffect(() => {
     let timeoutId;
     const updateVisibleCount = () => {
@@ -319,44 +284,44 @@ const ProductSlider = () => {
     };
   }, []);
 
-  // Get unique categories for filter
+  // Get unique categories
   const uniqueCategories = useMemo(() => {
-    const cats = ['all', 'featured', 'new'];
+    const cats = ['all', 'featured'];
     categories.forEach(cat => {
       cats.push(cat.category_name.toLowerCase());
     });
     return [...new Set(cats)];
   }, [categories]);
 
-  // Memoized filters and sorting
+  // Filter products
   const filteredProducts = useMemo(() => {
     return allProducts.filter(product => {
       if (filter === 'all') return true;
       if (filter === 'featured') return product.isFeatured;
-      if (filter === 'new') return product.isNew;
       return product.category.toLowerCase() === filter.toLowerCase();
     });
   }, [allProducts, filter]);
 
+  // Sort products
   const sortedProducts = useMemo(() => {
-    return [...filteredProducts].sort((a, b) => {
-      switch (sortBy) {
-        case 'price-low':
-          return a.price - b.price;
-        case 'price-high':
-          return b.price - a.price;
-        case 'rating':
-          return b.rating - a.rating;
-        case 'discount':
-          return b.discount - a.discount;
-        default:
-          return b.isFeatured - a.isFeatured;
-      }
-    });
+    const sorted = [...filteredProducts];
+    
+    switch (sortBy) {
+      case 'price-low':
+        return sorted.sort((a, b) => (a.price || 0) - (b.price || 0));
+      case 'price-high':
+        return sorted.sort((a, b) => (b.price || 0) - (a.price || 0));
+      case 'rating':
+        return sorted.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating));
+      case 'discount':
+        return sorted.sort((a, b) => (b.discount || 0) - (a.discount || 0));
+      default:
+        return sorted.sort((a, b) => (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0));
+    }
   }, [filteredProducts, sortBy]);
 
-  // Calculate visible products with sliding animation
-  const getVisibleProducts = useCallback(() => {
+  // Get visible products
+  const visibleProducts = useMemo(() => {
     if (sortedProducts.length === 0) return [];
     
     const totalProducts = sortedProducts.length;
@@ -368,38 +333,23 @@ const ProductSlider = () => {
     const visible = [];
     for (let i = 0; i < visibleCount; i++) {
       const productIndex = (currentIndex + i) % totalProducts;
-      visible.push({
-        ...sortedProducts[productIndex],
-        key: `${sortedProducts[productIndex].id}-${currentIndex}-${i}`
-      });
+      if (sortedProducts[productIndex]) {
+        visible.push({
+          ...sortedProducts[productIndex],
+          key: `${sortedProducts[productIndex].id}-${currentIndex}-${i}`
+        });
+      }
     }
     
     return visible;
   }, [currentIndex, sortedProducts, visibleCount]);
 
-  const visibleProducts = getVisibleProducts();
-
-  // Handle view details
+  // View details handler
   const handleViewDetails = useCallback((productModel) => {
     navigate(`/products/${productModel}`);
   }, [navigate]);
 
-  // Auto-play slider with cleanup
-  useEffect(() => {
-    if (!isAutoPlaying || isTransitioning) return;
-
-    autoPlayRef.current = setInterval(() => {
-      handleNextSlide();
-    }, 4000);
-
-    return () => {
-      if (autoPlayRef.current) {
-        clearInterval(autoPlayRef.current);
-      }
-    };
-  }, [isAutoPlaying, isTransitioning, sortedProducts.length, visibleCount]);
-
-  // Optimized slide handlers
+  // Slide handlers
   const handleNextSlide = useCallback(() => {
     if (sortedProducts.length <= visibleCount || isTransitioning) return;
     
@@ -432,55 +382,65 @@ const ProductSlider = () => {
     }, 500);
   }, [currentIndex, sortedProducts.length, visibleCount, isTransitioning]);
 
+  // Auto-play effect - FIXED: Separated from slide handlers
+  useEffect(() => {
+    if (!isAutoPlaying || isTransitioning || sortedProducts.length <= visibleCount) return;
+
+    const nextSlide = () => {
+      if (sortedProducts.length <= visibleCount || isTransitioning) return;
+      
+      setIsTransitioning(true);
+      
+      const newIndex = currentIndex >= sortedProducts.length - visibleCount 
+        ? 0 
+        : currentIndex + 1;
+      
+      setCurrentIndex(newIndex);
+      
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 500);
+    };
+
+    autoPlayRef.current = setInterval(nextSlide, 4000);
+
+    return () => {
+      if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current);
+      }
+    };
+  }, [isAutoPlaying, isTransitioning, sortedProducts.length, visibleCount, currentIndex]);
+
+  // Toggle auto-play
   const toggleAutoPlay = () => {
     setIsAutoPlaying(!isAutoPlaying);
   };
 
-  const goToSlide = useCallback((index) => {
-    if (isTransitioning) return;
-    
-    setIsTransitioning(true);
-    const newIndex = Math.min(index, sortedProducts.length - visibleCount);
-    setCurrentIndex(newIndex);
-    
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 500);
-  }, [isTransitioning, sortedProducts.length, visibleCount]);
-
-  // Memoized render functions
-  const renderStars = useCallback((rating) => {
-    return (
-      <div className="flex items-center">
-        <div 
-          className="flex items-center text-white text-xs px-1.5 py-0.5 rounded"
-          style={{ backgroundColor: bluePrimary }}
-        >
-          <span className="font-bold">{parseFloat(rating).toFixed(1)}</span>
-          <FiStar className="ml-0.5 text-xs fill-current" />
-        </div>
-      </div>
-    );
-  }, []);
-
-  // Calculate counts for filter buttons
+  // Get category count
   const getCategoryCount = useCallback((categoryId) => {
     if (categoryId === 'all') return allProducts.length;
     if (categoryId === 'featured') return allProducts.filter(p => p.isFeatured).length;
-    if (categoryId === 'new') return allProducts.filter(p => p.isNew).length;
     return allProducts.filter(p => p.category.toLowerCase() === categoryId.toLowerCase()).length;
   }, [allProducts]);
 
-  // Calculate slides
-  const totalSlides = Math.max(1, Math.ceil(sortedProducts.length / visibleCount));
-  const currentSlide = Math.floor(currentIndex / visibleCount);
+  // Handle filter change
+  const handleFilterChange = (categoryId) => {
+    setFilter(categoryId);
+    setCurrentIndex(0);
+  };
+
+  // Handle sort change
+  const handleSortChange = (e) => {
+    setSortBy(e.target.value);
+    setCurrentIndex(0);
+  };
 
   if (!mounted) return null;
 
   return (
     <section className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section - Amazon Style */}
+        {/* Header */}
         <div className="mb-10">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-gray-900">
@@ -502,17 +462,14 @@ const ProductSlider = () => {
           </div>
         </div>
 
-        {/* Controls Section - Updated Style */}
+        {/* Controls */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
-          {/* Filter Buttons - Amazon Style */}
+          {/* Filter Buttons */}
           <div className="flex flex-wrap gap-2 justify-center">
             {uniqueCategories.slice(0, 6).map(categoryId => (
               <button
                 key={categoryId}
-                onClick={() => {
-                  setFilter(categoryId);
-                  setCurrentIndex(0);
-                }}
+                onClick={() => handleFilterChange(categoryId)}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                   filter === categoryId
                     ? 'text-white shadow-sm'
@@ -533,16 +490,13 @@ const ProductSlider = () => {
             ))}
           </div>
 
-          {/* Sort Controls - Cleaner Style */}
+          {/* Sort & Play Controls */}
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 bg-white border border-gray-300 rounded-md p-2">
               <FiGrid className="text-gray-500 text-sm" />
               <select
                 value={sortBy}
-                onChange={(e) => {
-                  setSortBy(e.target.value);
-                  setCurrentIndex(0);
-                }}
+                onChange={handleSortChange}
                 className="bg-transparent border-none focus:outline-none text-sm font-medium"
               >
                 <option value="featured">Featured</option>
@@ -553,7 +507,6 @@ const ProductSlider = () => {
               </select>
             </div>
 
-            {/* Auto-play toggle - Minimal */}
             <button
               onClick={toggleAutoPlay}
               className={`flex items-center gap-2 px-3 py-2 rounded-md border text-sm ${
@@ -570,17 +523,18 @@ const ProductSlider = () => {
           </div>
         </div>
 
-        {/* Slider Container - Cleaner Background */}
+        {/* Slider Container */}
         <div 
-          ref={sliderContainerRef}
+          ref={containerRef}
           className="relative overflow-hidden rounded-lg p-4"
           style={{ backgroundColor: `${bluePrimary}05` }}
         >
-          {/* Navigation Arrows - Amazon Style */}
+          {/* Navigation Arrows */}
           <button
             onClick={handlePrevSlide}
             className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white border border-gray-300 rounded-full shadow-sm flex items-center justify-center hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={sortedProducts.length <= visibleCount || isTransitioning}
+            aria-label="Previous slide"
           >
             <FiChevronLeft className="text-xl text-gray-700" />
           </button>
@@ -589,20 +543,18 @@ const ProductSlider = () => {
             onClick={handleNextSlide}
             className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white border border-gray-300 rounded-full shadow-sm flex items-center justify-center hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={sortedProducts.length <= visibleCount || isTransitioning}
+            aria-label="Next slide"
           >
             <FiChevronRight className="text-xl text-gray-700" />
           </button>
 
-          {/* Horizontal Product Cards Grid */}
-          <div
-            ref={sliderRef}
-            className={`grid gap-4 transition-all duration-500 ease-in-out ${
-              isTransitioning ? 'pointer-events-none' : ''
-            }`}
-            style={{
-              gridTemplateColumns: `repeat(${visibleCount}, minmax(0, 1fr))`
-            }}
-          >
+          {/* Product Grid */}
+          <div className={`grid gap-4 transition-all duration-500 ease-in-out ${
+            isTransitioning ? 'pointer-events-none' : ''
+          }`}
+          style={{
+            gridTemplateColumns: `repeat(${visibleCount}, minmax(0, 1fr))`
+          }}>
             {visibleProducts.map((product) => (
               <ProductCard
                 key={product.key}
@@ -612,41 +564,25 @@ const ProductSlider = () => {
                 onMouseLeave={() => setHoveredProduct(null)}
                 bluePrimary={bluePrimary}
                 blueSecondary={blueSecondary}
-                blueDark={blueDark}
-                renderStars={renderStars}
-                onViewDetails={handleViewDetails}
+                handleViewDetails={handleViewDetails}
               />
             ))}
           </div>
         </div>
 
-        {/* Slider Indicators - Minimal */}
-        <div className="flex flex-col items-center gap-4 mt-8">
-          <div className="flex items-center gap-2">
-            {Array.from({ length: totalSlides }).map((_, index) => (
-              <button
-                key={`slide-${index}`}
-                onClick={() => goToSlide(index * visibleCount)}
-                className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                  currentSlide === index
-                    ? 'w-6'
-                    : 'bg-gray-300 hover:bg-gray-400'
-                }`}
-                style={currentSlide === index ? { 
-                  backgroundColor: bluePrimary 
-                } : {}}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
-          
+        {/* Simple Product Counter */}
+        <div className="flex flex-col items-center gap-2 mt-8">
           <div className="text-sm text-gray-600">
-            Showing {Math.min(currentIndex + 1, sortedProducts.length)}-
-            {Math.min(currentIndex + visibleCount, sortedProducts.length)} of {sortedProducts.length} products
+            Showing <span className="font-medium" style={{ color: bluePrimary }}>
+              {Math.min(currentIndex + 1, sortedProducts.length)}-
+              {Math.min(currentIndex + visibleCount, sortedProducts.length)}
+            </span> of <span className="font-medium" style={{ color: bluePrimary }}>
+              {sortedProducts.length}
+            </span> products
           </div>
         </div>
 
-        {/* Quick Stats - Amazon Style */}
+        {/* Quick Stats */}
         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
           <div 
             className="bg-white border rounded-lg p-4 text-center hover:border-gray-300 transition-colors"
@@ -689,7 +625,7 @@ const ProductSlider = () => {
           </div>
         </div>
 
-        {/* Footer CTA - Amazon Style */}
+        {/* Footer CTA */}
         <div className="mt-12 pt-8 border-t border-gray-200 text-center">
           <button 
             onClick={() => navigate('/products')}
@@ -712,6 +648,721 @@ const ProductSlider = () => {
 };
 
 export default memo(ProductSlider);
+
+// import React, { useState, useEffect, useRef, useCallback, memo, useMemo } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import { 
+//   FiChevronLeft, 
+//   FiChevronRight, 
+//   FiStar, 
+//   FiEye,
+//   FiZap,
+//   FiTag,
+//   FiCheck,
+//   FiTruck,
+//   FiShield,
+//   FiClock,
+//   FiArrowRight,
+//   FiPause,
+//   FiPlay,
+//   FiGrid,
+//   FiShoppingBag
+// } from 'react-icons/fi';
+// import { useInView } from 'react-intersection-observer';
+// import isEqual from 'react-fast-compare';
+// import categoriesData from '../../DATA/data.json';
+
+// // Amazon/Flipkart Style Product Card Component
+// const ProductCard = memo(({ 
+//   product, 
+//   isHovered, 
+//   onMouseEnter, 
+//   onMouseLeave,
+//   bluePrimary,
+//   blueSecondary,
+//   blueDark,
+//   renderStars,
+//   onViewDetails
+// }) => {
+//   const navigate = useNavigate();
+//   const { ref, inView } = useInView({
+//     triggerOnce: true,
+//     rootMargin: '200px 0px',
+//   });
+
+//   const handleViewDetails = () => {
+//     navigate(`/products/${product.model}`);
+//   };
+
+//   return (
+//     <div
+//       ref={ref}
+//       className="relative group h-full"
+//       onMouseEnter={() => onMouseEnter(product.model)}
+//       onMouseLeave={onMouseLeave}
+//     >
+//       {/* Amazon/Flipkart Style Card Container */}
+//       <div className={`bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 h-full flex flex-col ${
+//         isHovered ? 'transform -translate-y-1 shadow-lg border-gray-300' : ''
+//       }`}>
+        
+//         {/* Image Container - Amazon Style */}
+//         <div className="relative overflow-hidden bg-white p-4 flex items-center justify-center h-56">
+//           {inView ? (
+//             <>
+//               <img
+//                 src={product.images[0]}
+//                 alt={product.product_name}
+//                 loading="lazy"
+//                 className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+//                 onError={(e) => {
+//                   e.target.src = 'https://via.placeholder.com/400x400?text=Product+Image';
+//                 }}
+//               />
+              
+//               {/* Quick View Overlay - Amazon Style */}
+//               <div className={`absolute inset-0 bg-gradient-to-t from-black/20 to-transparent flex items-end justify-center pb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+//                 isHovered ? 'opacity-100' : ''
+//               }`}>
+//                 <button 
+//                   onClick={handleViewDetails}
+//                   className="w-full mx-4 py-2.5 bg-white rounded-md font-medium text-sm hover:bg-gray-50 transition-colors duration-200 flex items-center justify-center gap-2 shadow-md"
+//                   style={{ color: bluePrimary }}
+//                 >
+//                   <FiEye className="text-base" />
+//                   Quick View
+//                 </button>
+//               </div>
+//             </>
+//           ) : (
+//             <div className="w-full h-full bg-gray-100 animate-pulse rounded"></div>
+//           )}
+          
+//           {/* Top Badges - Amazon Style */}
+//           <div className="absolute top-2 left-2 flex flex-col gap-1">
+//             {product.discount > 15 && (
+//               <span 
+//                 className="px-2 py-1 text-white text-xs font-bold rounded"
+//                 style={{ backgroundColor: bluePrimary }}
+//               >
+//                 {product.discount}% OFF
+//               </span>
+//             )}
+//             {product.isNew && (
+//               <span 
+//                 className="px-2 py-1 text-white text-xs font-bold rounded"
+//                 style={{ backgroundColor: blueSecondary }}
+//               >
+//                 NEW
+//               </span>
+//             )}
+//           </div>
+//         </div>
+
+//         {/* Product Info Container - Amazon/Flipkart Style */}
+//         <div className="p-4 flex-grow flex flex-col border-t border-gray-100">
+          
+//           {/* Category/Brand */}
+//           <div className="mb-1">
+//             <span className="text-xs text-gray-500 font-medium">
+//               {product.brand}
+//             </span>
+//           </div>
+          
+//           {/* Product Name - Amazon Style */}
+//           <h3 
+//             className="text-sm text-gray-900 font-medium mb-2 line-clamp-2 transition-colors cursor-pointer h-10"
+//             onClick={handleViewDetails}
+//             style={{ '--tw-text-opacity': 1, color: `rgba(0, 42, 100, var(--tw-text-opacity))` }}
+//           >
+//             {product.product_name} - {product.model}
+//           </h3>
+          
+//           {/* Ratings - Amazon Style */}
+//           <div className="flex items-center gap-1 mb-3">
+//             <div 
+//               className="flex items-center text-white text-xs px-1.5 py-0.5 rounded"
+//               style={{ backgroundColor: bluePrimary }}
+//             >
+//               <span className="font-bold">{parseFloat(product.rating).toFixed(1)}</span>
+//               <FiStar className="ml-0.5 text-xs fill-current" />
+//             </div>
+//             <span className="text-xs text-gray-500">
+//               ({product.reviewCount})
+//             </span>
+//           </div>
+          
+//           {/* Key Specs Grid - Clean Amazon Style */}
+//           <div className="mb-4">
+//             <div className="grid grid-cols-2 gap-y-2 gap-x-3">
+//               {/* Power */}
+//               <div className="flex items-center">
+//                 <span className="text-xs text-gray-600 mr-1">Power:</span>
+//                 <span className="text-xs font-medium text-gray-900">{product.power}</span>
+//               </div>
+              
+//               {/* Voltage */}
+//               <div className="flex items-center">
+//                 <span className="text-xs text-gray-600 mr-1">Voltage:</span>
+//                 <span className="text-xs font-medium text-gray-900">{product.voltage}</span>
+//               </div>
+              
+//               {/* Brand */}
+//               <div className="flex items-center">
+//                 <span className="text-xs text-gray-600 mr-1">Brand:</span>
+//                 <span className="text-xs font-medium text-gray-900">{product.brand}</span>
+//               </div>
+              
+//               {/* Origin */}
+//               <div className="flex items-center">
+//                 <span className="text-xs text-gray-600 mr-1">Origin:</span>
+//                 <span className="text-xs font-medium text-gray-900">{product.country_of_origin}</span>
+//               </div>
+//             </div>
+//           </div>
+          
+//           {/* Warranty Badge - Flipkart Style */}
+//           <div className="mb-4">
+//             <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border"
+//               style={{ 
+//                 backgroundColor: `${bluePrimary}10`,
+//                 borderColor: `${bluePrimary}30`
+//               }}
+//             >
+//               <FiShield className="text-sm" style={{ color: bluePrimary }} />
+//               <span className="text-xs font-medium" style={{ color: bluePrimary }}>{product.warranty}</span>
+//               <span className="text-xs" style={{ color: blueSecondary }}>Warranty</span>
+//             </div>
+//           </div>
+          
+//           {/* Price Section (Optional) - Amazon Style */}
+//           {product.price && (
+//             <div className="mb-4">
+//               <div className="flex items-baseline gap-2">
+//                 <span className="text-lg font-bold text-gray-900">
+//                   ₹{product.price.toLocaleString()}
+//                 </span>
+//                 {product.originalPrice > product.price && (
+//                   <>
+//                     <span className="text-sm text-gray-500 line-through">
+//                       ₹{product.originalPrice.toLocaleString()}
+//                     </span>
+//                     <span className="text-xs font-medium text-green-600">
+//                       Save ₹{(product.originalPrice - product.price).toLocaleString()}
+//                     </span>
+//                   </>
+//                 )}
+//               </div>
+//             </div>
+//           )}
+          
+//           {/* Action Buttons - Amazon Style */}
+//           <div className="mt-auto space-y-2">
+//             {/* Enquiry Button - Primary */}
+//             <button 
+//               onClick={handleViewDetails}
+//               className="w-full py-2.5 text-white rounded-md font-medium text-sm transition-all duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-2"
+//               style={{ 
+//                 background: `linear-gradient(to right, ${bluePrimary}, ${blueSecondary})`
+//               }}
+//             >
+//               <FiShoppingBag className="text-base" />
+//               Enquire Now
+//             </button>
+            
+//             {/* Additional Info - Amazon Style */}
+//             <div className="flex items-center justify-between text-xs text-gray-500">
+//               <div className="flex items-center gap-1">
+//                 <FiTruck className="text-green-600" />
+//                 <span>Free Delivery</span>
+//               </div>
+//               <div className="flex items-center gap-1">
+//                 <FiShield className="text-blue-600" />
+//                 <span>{product.warranty}</span>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }, isEqual);
+
+// // Helper function to flatten all products from categories
+// const flattenProducts = (categories) => {
+//   const allProducts = [];
+//   categories.forEach(category => {
+//     category.products.forEach(product => {
+//       // Generate realistic prices for Indian market (in rupees)
+//       const basePrice = Math.floor(Math.random() * 10000) + 1000;
+//       const discount = Math.floor(Math.random() * 35) + 5;
+//       const discountedPrice = Math.floor(basePrice * (1 - discount/100));
+      
+//       allProducts.push({
+//         ...product,
+//         category: category.category_name,
+//         id: product.model,
+//         isFeatured: Math.random() > 0.5,
+//         isNew: Math.random() > 0.7,
+//         discount: discount,
+//         rating: (Math.random() * 1.5 + 3.5).toFixed(1),
+//         reviewCount: Math.floor(Math.random() * 1000) + 50,
+//         price: discountedPrice,
+//         originalPrice: basePrice,
+//         stock: Math.floor(Math.random() * 100) + 10,
+//         description: `${product.brand} ${product.product_name} - ${product.model}. Features include ${product.key_features.slice(0, 3).join(', ')}. Perfect for home and commercial use with ${product.warranty} warranty.`
+//       });
+//     });
+//   });
+//   return allProducts;
+// };
+
+// // Main Component (Remains mostly the same with styling updates)
+// const ProductSlider = () => {
+//   const navigate = useNavigate();
+//   const [categories, setCategories] = useState([]);
+//   const [allProducts, setAllProducts] = useState([]);
+//   const [currentIndex, setCurrentIndex] = useState(0);
+//   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+//   const [hoveredProduct, setHoveredProduct] = useState(null);
+//   const [visibleCount, setVisibleCount] = useState(4);
+//   const [filter, setFilter] = useState('all');
+//   const [sortBy, setSortBy] = useState('featured');
+//   const [isTransitioning, setIsTransitioning] = useState(false);
+//   const [mounted, setMounted] = useState(false);
+  
+//   const autoPlayRef = useRef(null);
+//   const sliderContainerRef = useRef(null);
+//   const sliderRef = useRef(null);
+
+//   // Define the same color variables as in HomePage
+//   const bluePrimary = 'rgb(0, 42, 100)';
+//   const blueSecondary = 'rgb(0, 61, 130)';
+//   const blueDark = 'rgb(0, 18, 36)';
+
+//   // Load and flatten products
+//   useEffect(() => {
+//     setCategories(categoriesData);
+//     const flattened = flattenProducts(categoriesData);
+//     setAllProducts(flattened);
+//     setMounted(true);
+//   }, []);
+
+//   // Debounced resize handler
+//   useEffect(() => {
+//     let timeoutId;
+//     const updateVisibleCount = () => {
+//       clearTimeout(timeoutId);
+//       timeoutId = setTimeout(() => {
+//         const width = window.innerWidth;
+//         if (width < 640) setVisibleCount(1);
+//         else if (width < 768) setVisibleCount(2);
+//         else if (width < 1024) setVisibleCount(3);
+//         else setVisibleCount(4);
+//       }, 100);
+//     };
+
+//     updateVisibleCount();
+//     window.addEventListener('resize', updateVisibleCount);
+//     return () => {
+//       window.removeEventListener('resize', updateVisibleCount);
+//       clearTimeout(timeoutId);
+//     };
+//   }, []);
+
+//   // Get unique categories for filter
+//   const uniqueCategories = useMemo(() => {
+//     const cats = ['all', 'featured', 'new'];
+//     categories.forEach(cat => {
+//       cats.push(cat.category_name.toLowerCase());
+//     });
+//     return [...new Set(cats)];
+//   }, [categories]);
+
+//   // Memoized filters and sorting
+//   const filteredProducts = useMemo(() => {
+//     return allProducts.filter(product => {
+//       if (filter === 'all') return true;
+//       if (filter === 'featured') return product.isFeatured;
+//       if (filter === 'new') return product.isNew;
+//       return product.category.toLowerCase() === filter.toLowerCase();
+//     });
+//   }, [allProducts, filter]);
+
+//   const sortedProducts = useMemo(() => {
+//     return [...filteredProducts].sort((a, b) => {
+//       switch (sortBy) {
+//         case 'price-low':
+//           return a.price - b.price;
+//         case 'price-high':
+//           return b.price - a.price;
+//         case 'rating':
+//           return b.rating - a.rating;
+//         case 'discount':
+//           return b.discount - a.discount;
+//         default:
+//           return b.isFeatured - a.isFeatured;
+//       }
+//     });
+//   }, [filteredProducts, sortBy]);
+
+//   // Calculate visible products with sliding animation
+//   const getVisibleProducts = useCallback(() => {
+//     if (sortedProducts.length === 0) return [];
+    
+//     const totalProducts = sortedProducts.length;
+    
+//     if (totalProducts <= visibleCount) {
+//       return sortedProducts;
+//     }
+    
+//     const visible = [];
+//     for (let i = 0; i < visibleCount; i++) {
+//       const productIndex = (currentIndex + i) % totalProducts;
+//       visible.push({
+//         ...sortedProducts[productIndex],
+//         key: `${sortedProducts[productIndex].id}-${currentIndex}-${i}`
+//       });
+//     }
+    
+//     return visible;
+//   }, [currentIndex, sortedProducts, visibleCount]);
+
+//   const visibleProducts = getVisibleProducts();
+
+//   // Handle view details
+//   const handleViewDetails = useCallback((productModel) => {
+//     navigate(`/products/${productModel}`);
+//   }, [navigate]);
+
+//   // Auto-play slider with cleanup
+//   useEffect(() => {
+//     if (!isAutoPlaying || isTransitioning) return;
+
+//     autoPlayRef.current = setInterval(() => {
+//       handleNextSlide();
+//     }, 4000);
+
+//     return () => {
+//       if (autoPlayRef.current) {
+//         clearInterval(autoPlayRef.current);
+//       }
+//     };
+//   }, [isAutoPlaying, isTransitioning, sortedProducts.length, visibleCount]);
+
+//   // Optimized slide handlers
+//   const handleNextSlide = useCallback(() => {
+//     if (sortedProducts.length <= visibleCount || isTransitioning) return;
+    
+//     setIsTransitioning(true);
+    
+//     const newIndex = currentIndex >= sortedProducts.length - visibleCount 
+//       ? 0 
+//       : currentIndex + 1;
+    
+//     setCurrentIndex(newIndex);
+    
+//     setTimeout(() => {
+//       setIsTransitioning(false);
+//     }, 500);
+//   }, [currentIndex, sortedProducts.length, visibleCount, isTransitioning]);
+
+//   const handlePrevSlide = useCallback(() => {
+//     if (sortedProducts.length <= visibleCount || isTransitioning) return;
+    
+//     setIsTransitioning(true);
+    
+//     const newIndex = currentIndex === 0 
+//       ? Math.max(0, sortedProducts.length - visibleCount)
+//       : currentIndex - 1;
+    
+//     setCurrentIndex(newIndex);
+    
+//     setTimeout(() => {
+//       setIsTransitioning(false);
+//     }, 500);
+//   }, [currentIndex, sortedProducts.length, visibleCount, isTransitioning]);
+
+//   const toggleAutoPlay = () => {
+//     setIsAutoPlaying(!isAutoPlaying);
+//   };
+
+//   const goToSlide = useCallback((index) => {
+//     if (isTransitioning) return;
+    
+//     setIsTransitioning(true);
+//     const newIndex = Math.min(index, sortedProducts.length - visibleCount);
+//     setCurrentIndex(newIndex);
+    
+//     setTimeout(() => {
+//       setIsTransitioning(false);
+//     }, 500);
+//   }, [isTransitioning, sortedProducts.length, visibleCount]);
+
+//   // Memoized render functions
+//   const renderStars = useCallback((rating) => {
+//     return (
+//       <div className="flex items-center">
+//         <div 
+//           className="flex items-center text-white text-xs px-1.5 py-0.5 rounded"
+//           style={{ backgroundColor: bluePrimary }}
+//         >
+//           <span className="font-bold">{parseFloat(rating).toFixed(1)}</span>
+//           <FiStar className="ml-0.5 text-xs fill-current" />
+//         </div>
+//       </div>
+//     );
+//   }, []);
+
+//   // Calculate counts for filter buttons
+//   const getCategoryCount = useCallback((categoryId) => {
+//     if (categoryId === 'all') return allProducts.length;
+//     if (categoryId === 'featured') return allProducts.filter(p => p.isFeatured).length;
+//     if (categoryId === 'new') return allProducts.filter(p => p.isNew).length;
+//     return allProducts.filter(p => p.category.toLowerCase() === categoryId.toLowerCase()).length;
+//   }, [allProducts]);
+
+//   // Calculate slides
+//   const totalSlides = Math.max(1, Math.ceil(sortedProducts.length / visibleCount));
+//   const currentSlide = Math.floor(currentIndex / visibleCount);
+
+//   if (!mounted) return null;
+
+//   return (
+//     <section className="py-12 bg-white">
+//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//         {/* Header Section - Amazon Style */}
+//         <div className="mb-10">
+//           <div className="flex items-center justify-between mb-6">
+//             <h2 className="text-2xl font-bold text-gray-900">
+//               Featured Products
+//             </h2>
+//             <button 
+//               onClick={() => navigate('/products')}
+//               className="text-sm font-medium flex items-center gap-1"
+//               style={{ color: bluePrimary }}
+//             >
+//               View All
+//               <FiArrowRight className="text-sm" />
+//             </button>
+//           </div>
+          
+//           <div className="flex items-center gap-2 text-sm text-gray-600">
+//             <FiZap className="text-orange-500" />
+//             <span>Discover premium electrical appliances with exclusive deals</span>
+//           </div>
+//         </div>
+
+//         {/* Controls Section - Updated Style */}
+//         <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
+//           {/* Filter Buttons - Amazon Style */}
+//           <div className="flex flex-wrap gap-2 justify-center">
+//             {uniqueCategories.slice(0, 6).map(categoryId => (
+//               <button
+//                 key={categoryId}
+//                 onClick={() => {
+//                   setFilter(categoryId);
+//                   setCurrentIndex(0);
+//                 }}
+//                 className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+//                   filter === categoryId
+//                     ? 'text-white shadow-sm'
+//                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+//                 }`}
+//                 style={filter === categoryId ? { 
+//                   backgroundColor: bluePrimary 
+//                 } : {}}
+//               >
+//                 {categoryId.charAt(0).toUpperCase() + categoryId.slice(1)}
+//                 <span className="ml-1.5 px-1.5 py-0.5 rounded text-xs"
+//                       style={filter === categoryId ? { 
+//                         background: 'rgba(255, 255, 255, 0.3)' 
+//                       } : { background: 'rgba(255, 255, 255, 0.7)' }}>
+//                   {getCategoryCount(categoryId)}
+//                 </span>
+//               </button>
+//             ))}
+//           </div>
+
+//           {/* Sort Controls - Cleaner Style */}
+//           <div className="flex items-center gap-4">
+//             <div className="flex items-center gap-2 bg-white border border-gray-300 rounded-md p-2">
+//               <FiGrid className="text-gray-500 text-sm" />
+//               <select
+//                 value={sortBy}
+//                 onChange={(e) => {
+//                   setSortBy(e.target.value);
+//                   setCurrentIndex(0);
+//                 }}
+//                 className="bg-transparent border-none focus:outline-none text-sm font-medium"
+//               >
+//                 <option value="featured">Featured</option>
+//                 <option value="price-low">Price: Low to High</option>
+//                 <option value="price-high">Price: High to Low</option>
+//                 <option value="rating">Top Rated</option>
+//                 <option value="discount">Best Discount</option>
+//               </select>
+//             </div>
+
+//             {/* Auto-play toggle - Minimal */}
+//             <button
+//               onClick={toggleAutoPlay}
+//               className={`flex items-center gap-2 px-3 py-2 rounded-md border text-sm ${
+//                 isAutoPlaying
+//                   ? 'border-green-200 bg-green-50 text-green-700 hover:bg-green-100'
+//                   : 'border-gray-300 bg-gray-50 text-gray-700 hover:bg-gray-100'
+//               }`}
+//             >
+//               {isAutoPlaying ? <FiPause /> : <FiPlay />}
+//               <span className="font-medium">
+//                 {isAutoPlaying ? 'Pause' : 'Play'}
+//               </span>
+//             </button>
+//           </div>
+//         </div>
+
+//         {/* Slider Container - Cleaner Background */}
+//         <div 
+//           ref={sliderContainerRef}
+//           className="relative overflow-hidden rounded-lg p-4"
+//           style={{ backgroundColor: `${bluePrimary}05` }}
+//         >
+//           {/* Navigation Arrows - Amazon Style */}
+//           <button
+//             onClick={handlePrevSlide}
+//             className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white border border-gray-300 rounded-full shadow-sm flex items-center justify-center hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+//             disabled={sortedProducts.length <= visibleCount || isTransitioning}
+//           >
+//             <FiChevronLeft className="text-xl text-gray-700" />
+//           </button>
+
+//           <button
+//             onClick={handleNextSlide}
+//             className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white border border-gray-300 rounded-full shadow-sm flex items-center justify-center hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+//             disabled={sortedProducts.length <= visibleCount || isTransitioning}
+//           >
+//             <FiChevronRight className="text-xl text-gray-700" />
+//           </button>
+
+//           {/* Horizontal Product Cards Grid */}
+//           <div
+//             ref={sliderRef}
+//             className={`grid gap-4 transition-all duration-500 ease-in-out ${
+//               isTransitioning ? 'pointer-events-none' : ''
+//             }`}
+//             style={{
+//               gridTemplateColumns: `repeat(${visibleCount}, minmax(0, 1fr))`
+//             }}
+//           >
+//             {visibleProducts.map((product) => (
+//               <ProductCard
+//                 key={product.key}
+//                 product={product}
+//                 isHovered={hoveredProduct === product.id}
+//                 onMouseEnter={setHoveredProduct}
+//                 onMouseLeave={() => setHoveredProduct(null)}
+//                 bluePrimary={bluePrimary}
+//                 blueSecondary={blueSecondary}
+//                 blueDark={blueDark}
+//                 renderStars={renderStars}
+//                 onViewDetails={handleViewDetails}
+//               />
+//             ))}
+//           </div>
+//         </div>
+
+//         {/* Slider Indicators - Minimal */}
+//         <div className="flex flex-col items-center gap-4 mt-8">
+//           <div className="flex items-center gap-2">
+//             {Array.from({ length: totalSlides }).map((_, index) => (
+//               <button
+//                 key={`slide-${index}`}
+//                 onClick={() => goToSlide(index * visibleCount)}
+//                 className={`w-2 h-2 rounded-full transition-all duration-200 ${
+//                   currentSlide === index
+//                     ? 'w-6'
+//                     : 'bg-gray-300 hover:bg-gray-400'
+//                 }`}
+//                 style={currentSlide === index ? { 
+//                   backgroundColor: bluePrimary 
+//                 } : {}}
+//                 aria-label={`Go to slide ${index + 1}`}
+//               />
+//             ))}
+//           </div>
+          
+//           <div className="text-sm text-gray-600">
+//             Showing {Math.min(currentIndex + 1, sortedProducts.length)}-
+//             {Math.min(currentIndex + visibleCount, sortedProducts.length)} of {sortedProducts.length} products
+//           </div>
+//         </div>
+
+//         {/* Quick Stats - Amazon Style */}
+//         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+//           <div 
+//             className="bg-white border rounded-lg p-4 text-center hover:border-gray-300 transition-colors"
+//             style={{ borderColor: `${bluePrimary}20` }}
+//           >
+//             <div className="text-2xl font-bold text-gray-900 mb-1">
+//               {allProducts.filter(p => p.discount > 0).length}+
+//             </div>
+//             <div className="text-sm text-gray-600">Discounted Items</div>
+//           </div>
+          
+//           <div 
+//             className="bg-white border rounded-lg p-4 text-center hover:border-gray-300 transition-colors"
+//             style={{ borderColor: `${bluePrimary}20` }}
+//           >
+//             <div className="text-2xl font-bold text-gray-900 mb-1">
+//               {allProducts.filter(p => p.rating >= 4.5).length}+
+//             </div>
+//             <div className="text-sm text-gray-600">Top Rated</div>
+//           </div>
+          
+//           <div 
+//             className="bg-white border rounded-lg p-4 text-center hover:border-gray-300 transition-colors"
+//             style={{ borderColor: `${bluePrimary}20` }}
+//           >
+//             <div className="text-2xl font-bold text-gray-900 mb-1">
+//               {categories.length}+
+//             </div>
+//             <div className="text-sm text-gray-600">Categories</div>
+//           </div>
+          
+//           <div 
+//             className="bg-white border rounded-lg p-4 text-center hover:border-gray-300 transition-colors"
+//             style={{ borderColor: `${bluePrimary}20` }}
+//           >
+//             <div className="text-2xl font-bold text-gray-900 mb-1">
+//               {allProducts.length}+
+//             </div>
+//             <div className="text-sm text-gray-600">Total Products</div>
+//           </div>
+//         </div>
+
+//         {/* Footer CTA - Amazon Style */}
+//         <div className="mt-12 pt-8 border-t border-gray-200 text-center">
+//           <button 
+//             onClick={() => navigate('/products')}
+//             className="inline-flex items-center gap-2 px-8 py-3 text-white rounded-md font-medium text-base transition-all duration-200 shadow-sm hover:shadow-md"
+//             style={{ 
+//               background: `linear-gradient(to right, ${bluePrimary}, ${blueSecondary})`
+//             }}
+//           >
+//             <FiShoppingBag className="text-lg" />
+//             Browse All Products
+//             <FiArrowRight className="text-lg" />
+//           </button>
+//           <p className="mt-3 text-gray-600 text-sm">
+//             Explore our complete collection of premium electrical appliances
+//           </p>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default memo(ProductSlider);
 
 
 // import React, { useState, useEffect, useRef, useCallback, memo, useMemo } from 'react';

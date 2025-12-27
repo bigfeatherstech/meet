@@ -192,7 +192,7 @@ const ProductCard = ({
           </div>
           
           {/* Price Section */}
-          {product.price && (
+          {/* {product.price && (
             <div className="mb-4">
               <div className="flex items-baseline gap-2">
                 <span className="text-lg font-bold text-gray-900">
@@ -210,7 +210,7 @@ const ProductCard = ({
                 )}
               </div>
             </div>
-          )}
+          )} */}
           
           {/* Action Buttons */}
           <div className="mt-auto space-y-2">
