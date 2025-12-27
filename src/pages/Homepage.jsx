@@ -10,7 +10,7 @@ export default function Homepage() {
     <>
       <HeroSection />
       <AboutSection />
-      <ProductSlider  />
+      {/* <ProductSlider  /> */}
       <CTABanner/>
       <TestimonialSection />
     </>

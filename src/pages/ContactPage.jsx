@@ -559,7 +559,7 @@ const ContactPage = () => {
         </div>
       </section>
       {/* FAQ Section */}
-      <div className="bg-white rounded-2xl shadow-xl p-8 samsung-container mx-auto">
+      <div className="bg-white rounded-2xl shadow-xl p-8 samsung-container mx-auto ">
         <div className="flex justify-center items-center gap-3 mb-6">
           <div 
             className="p-2 rounded-lg"
@@ -589,7 +589,7 @@ const ContactPage = () => {
           ))}
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 pb-10">
           {activeCategory?.questions.map((faq, index) => (
             <div
               key={index}
