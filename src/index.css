@@ -144,3 +144,15 @@
   perspective: 1000px;
   transform-style: preserve-3d;
 }
+
+
+
+/* Add these styles */
+.dark {
+  color-scheme: dark;
+}
+
+/* Smooth transitions */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
